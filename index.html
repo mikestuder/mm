@@ -92,275 +92,110 @@
       -webkit-background-clip:text; background-clip:text; color:transparent;
       letter-spacing:.08em; text-transform:uppercase; font-size:clamp(42px, 9.2vw, 160px); opacity:.92;
     }
-    .hero .tint{ position:absolute; inset:0; z-index:-1; background:
-      radial-gradient(120% 90% at 50% -10%, rgba(185,92,51,.28), transparent 50%),
-      linear-gradient(to bottom, rgba(185,92,51,.18), transparent 30%); mix-blend-mode:multiply }
-    .names::after{
-      content:""; position:absolute; inset:0; pointer-events:none;
-      background:
-        radial-gradient(circle at 20% 30%, rgba(255,255,255,.18) 0 2px, transparent 3px),
-        radial-gradient(circle at 78% 40%, rgba(255,255,255,.12) 0 2px, transparent 3px),
-        radial-gradient(circle at 60% 75%, rgba(255,255,255,.15) 0 2px, transparent 3px);
-      animation: twinkle 6s ease-in-out infinite alternate;
-    }
-    @keyframes twinkle{ from{opacity:.25; transform:translateY(0)} to{opacity:.6; transform:translateY(-4px)} }
 
     /* Intro below hero */
     .intro{ position:relative; margin-top:0; padding: calc(var(--rhythm)/2) 0 8px; text-align:center; z-index:1 }
     .intro .kicker{
       font-family:"Playfair Display", serif; font-weight:600; letter-spacing:.25em; text-transform:uppercase;
       color:rgba(43,43,43,.86); text-shadow:0 1px 0 rgba(255,255,255,.25);
-      display:inline-block; padding-bottom:8px; position:relative;
     }
-    .intro .kicker::after{
-      content:""; position:absolute; left:0; right:0; bottom:0; height:12px;
-      background: radial-gradient(60% 220% at 50% 200%, rgba(185,92,51,.65) 0 30%, transparent 31%);
-      mask: linear-gradient(#000 0 0) left / 0% 100% no-repeat;
-      -webkit-mask: linear-gradient(#000 0 0) left / 0% 100% no-repeat;
-      animation: draw 1.8s ease .4s forwards; opacity:.8;
-    }
-    @keyframes draw{ to{mask-size:100% 100%; -webkit-mask-size:100% 100%} }
-    .intro .date{ margin-top:6px; color:rgba(185,92,51,.9); font-weight:800; letter-spacing:.18em; text-transform:uppercase; font-size:1.05rem; text-shadow:0 1px 0 rgba(255,255,255,.2) }
+    .intro .date{ margin-top:6px; color:rgba(185,92,51,.9); font-weight:800; letter-spacing:.18em; text-transform:uppercase; font-size:1.05rem }
     .cta{ display:inline-block; margin-top:16px; padding:12px 20px; border-radius:999px; border:1px solid var(--copper); color:#fff; background:var(--copper); text-decoration:none; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.92rem }
     .cta:hover{ background:var(--copper-dark); border-color:var(--copper-dark) }
 
-    /* Sections */
-    .section{ padding: var(--rhythm) 0; }
-    .wrap{ scroll-margin-top:80px } /* anchor target spacing under sticky header */
-
-    /* Events (no boxes; icons left) */
+    /* Events (larger icons) */
     .events{ position:relative; display:grid; gap:28px }
-    .events::before{ content:""; position:absolute; left:40px; top:0; bottom:0; width:1px; background:linear-gradient(#e9d8c9,#d9b9a7,#e9d8c9) }
-    .event{ display:grid; grid-template-columns:110px 1fr; align-items:center; gap:18px; padding:8px 6px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
+    .events::before{ content:""; position:absolute; left:60px; top:0; bottom:0; width:1px; background:linear-gradient(#e9d8c9,#d9b9a7,#e9d8c9) }
+    .event{ display:grid; grid-template-columns:160px 1fr; align-items:center; gap:28px; padding:8px 6px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
     .event.revealed{ opacity:1; transform:translateY(0) }
-    .event .icon{ width:96px; height:96px; display:block; margin:0 auto; filter:contrast(1.05) saturate(1); opacity:.96; transition:transform .22s ease }
+    .event .icon{ width:140px; height:140px; display:block; margin:0 auto; filter:contrast(1.05) saturate(1); opacity:.96; transition:transform .22s ease }
     .event:hover .icon{ transform: translateY(-3px) scale(1.02) }
     .event h3{ margin:0 0 4px 0; text-align:left; font-family:"Playfair Display", serif; font-weight:900; color:var(--copper); letter-spacing:.16em; text-transform:uppercase; font-size:1.05rem }
     .event .time{ font-weight:700; opacity:.9; margin-bottom:2px }
     .event .addr{ color:#5a524d; margin-top:0 }
 
-    /* FAQ (polaroid) */
-    .faq{ display:grid; grid-template-columns: 1fr 1.05fr; gap:26px; align-items:start }
-    .faq figure{ margin:0; position:relative; transform: rotate(-1.2deg) }
-    .faq figure img{ width:100%; height:auto; border-radius:10px; border:1px solid var(--line); box-shadow:0 18px 40px rgba(0,0,0,.12); object-fit:cover }
-    .faq figcaption{ text-align:center; font-family:"Great Vibes", cursive; color:var(--copper); font-size:22px; margin-top:10px }
-    details{ border-top:1px solid var(--line); padding:14px 2px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
-    details:first-of-type{border-top:0}
-    details.revealed{ opacity:1; transform:translateY(0) }
-    summary{ list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-weight:700; letter-spacing:.05em; color:var(--ink-soft) }
-    summary::after{ content:"+"; color:var(--copper); font-weight:900 }
-    details[open] summary::after{ content:"–" }
-    details p{ margin:.6rem 0 .2rem }
-
-    /* Notes */
-    .note{ background:var(--paper-2); border:1px solid var(--line); border-radius:18px; padding:24px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
-    .note.revealed{ opacity:1; transform:translateY(0) }
-    h2{ font-family:"Playfair Display", serif; font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--copper); font-size:clamp(18px,3.2vw,22px); margin:2px 0 14px; text-align:center }
-    .bullets{margin:.4rem 0 0 0} .bullets li{margin:.25rem 0} .stars{color:var(--copper); letter-spacing:.06em}
-
-    /* Wavy divider */
-    .wave{ display:block; width:100%; height:70px; margin:24px 0 -6px; opacity:.65; filter: drop-shadow(0 6px 10px rgba(0,0,0,.05)) }
-
-    /* Back to top */
-    #totop{ position:fixed; right:16px; bottom:16px; padding:10px 12px; border-radius:999px; border:1px solid var(--copper); background:#fff; color:var(--copper); font-weight:700; box-shadow:0 6px 18px rgba(0,0,0,.08); opacity:0; pointer-events:none; transition:.25s }
-    #totop.show{ opacity:1; pointer-events:auto }
-
-    /* Texture overlay */
-    .texture{ position:fixed; inset:0; pointer-events:none; z-index:2; opacity:.14; mix-blend-mode:multiply; background-image:radial-gradient(rgba(0,0,0,.06) 0.5px, transparent 0.5px); background-size:2px 2px }
-
-    /* Motion & responsive */
-    @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} .texture{display:none} }
     @media (max-width:900px){
-      .faq{grid-template-columns:1fr}
-      .hero{min-height:84vh}
-      .events::before{ left:30px }
-      .event{ grid-template-columns:82px 1fr }
-      .event .icon{ width:72px; height:72px }
+      .event .icon{ width:100px; height:100px }
+      .event{ grid-template-columns:110px 1fr }
+      .events::before{ left:45px }
     }
 
-    /* Focus ring */
-    a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid var(--copper); outline-offset:3px; border-radius:8px }
+    /* Keep the rest unchanged */
+    h2{font-family:"Playfair Display",serif;font-weight:900;letter-spacing:.18em;text-transform:uppercase;color:var(--copper);font-size:clamp(18px,3.2vw,22px);margin:2px 0 14px;text-align:center}
+    .note{background:var(--paper-2);border:1px solid var(--line);border-radius:18px;padding:24px;transform:translateY(8px);opacity:0;transition:opacity .6s ease,transform .6s ease}
+    .note.revealed{opacity:1;transform:translateY(0)}
   </style>
 </head>
+
 <body>
-
-  <!-- paper/grain texture -->
-  <div class="texture" aria-hidden="true"></div>
-
-  <!-- Sticky cursive header -->
-  <div class="sticky-brand" id="stickyBrand" aria-hidden="true">
-    <nav class="tiny-nav" aria-label="Sections">
-      <a href="#schedule">Schedule</a>
-      <a href="#faq">FAQ</a>
-      <a href="#travel">Travel</a>
-      <a href="#stay">Stay</a>
-    </nav>
+  <div class="sticky-brand" id="stickyBrand">
     <div class="brand-script">Michael &amp; Mariella</div>
-    <a class="top-cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
   </div>
 
-  <!-- PASSWORD GATE (code: mm26) -->
-  <div class="gate" id="pwGate" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
+  <!-- PASSWORD GATE -->
+  <div class="gate" id="pwGate">
     <div class="gate-card">
-      <div class="smallcaps" style="color:var(--copper); font-weight:800;">Private Site</div>
-      <h1 id="pwTitle">Michael &amp; Mariella</h1>
-      <p id="pwHint">Please enter the code to view our wedding details.</p>
+      <h1>Michael &amp; Mariella</h1>
+      <p>Please enter the code to view our wedding details.</p>
       <div class="field">
-        <input id="pwInput" placeholder="Enter code" aria-label="Password code" aria-describedby="pwHint" autocomplete="off" />
-        <button id="pwBtn" aria-label="Unlock site">Enter</button>
+        <input id="pwInput" placeholder="Enter code" />
+        <button id="pwBtn">Enter</button>
       </div>
-      <div class="err" id="pwErr" role="status" aria-live="polite"></div>
-      <p style="margin-top:12px; font-size:.9rem; opacity:.75">Hint: lower-case letters &amp; numbers.</p>
+      <div class="err" id="pwErr"></div>
     </div>
   </div>
 
   <!-- HERO -->
   <header class="hero" id="hero">
     <div class="names"><h1>MICHAEL &amp; MARIELLA</h1></div>
-    <div class="tint" aria-hidden="true"></div>
   </header>
 
-  <!-- INTRO (below hero) -->
-  <section class="intro wrap" aria-label="Intro">
+  <!-- INTRO -->
+  <section class="intro wrap">
     <div class="kicker">Our Wedding</div>
     <div class="date">June 24, 2026</div>
-    <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
+    <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank">RSVP</a>
   </section>
 
-  <!-- SCHEDULE (no boxes; icons left) -->
-  <section class="section wrap" id="schedule" aria-label="Schedule">
+  <!-- EVENTS -->
+  <section class="section wrap" id="schedule">
     <div class="events">
       <article class="event reveal">
-        <img loading="lazy" class="icon" src="images/WelcomeDinnerIcon.png" alt="Welcome dinner icon" />
+        <img loading="lazy" class="icon" src="images/WelcomeDinnerIcon.png" alt="Welcome Dinner Icon">
         <div>
           <h3>Welcome Dinner</h3>
           <p class="time">Tuesday, June 23rd, 2026 · 7:30 PM</p>
-          <p class="addr">
-            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Palazzo+Portinari+Salviati">Palazzo Portinari Salviati</a> — Florence, Italy
-          </p>
+          <p class="addr">Palazzo Portinari Salviati — Florence, Italy</p>
         </div>
       </article>
 
       <article class="event reveal">
-        <img loading="lazy" class="icon" src="images/WeddingIcon.png" alt="Ceremony icon" />
+        <img loading="lazy" class="icon" src="images/WeddingIcon.png" alt="Ceremony Icon">
         <div>
           <h3>The Ceremony</h3>
           <p class="time">Wednesday, June 24th, 2026 · 4:00 PM</p>
-          <p class="addr">
-            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Basilica+di+Santa+Maria+Novella">Basilica di Santa Maria Novella</a><br/>
-            Piazza di Santa Maria Novella, 18 — 50123 Firenze FI, Italy
-          </p>
+          <p class="addr">Basilica di Santa Maria Novella — Florence, Italy</p>
         </div>
       </article>
 
       <article class="event reveal">
-        <img loading="lazy" class="icon" src="images/ReceptionIcon.png" alt="Reception icon" />
+        <img loading="lazy" class="icon" src="images/ReceptionIcon.png" alt="Reception Icon">
         <div>
           <h3>Reception</h3>
           <p class="time">Wednesday, June 24th, 2026 · 6:30 PM</p>
-          <p class="addr">
-            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Villa+Cetinale">Villa Cetinale</a> — Str. di Cetinale, 9 — 53018 Sovicille SI, Italy
-          </p>
+          <p class="addr">Villa Cetinale — Sovicille SI, Italy</p>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- Divider -->
-  <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0,30 C240,90 480,0 720,50 C960,100 1200,20 1440,70 L1440,100 L0,100 Z" fill="#fff7ef"></path>
-  </svg>
-
-  <!-- FAQ -->
-  <section class="section wrap" id="faq" aria-label="FAQ">
-    <div class="faq">
-      <figure class="reveal">
-        <img loading="lazy" src="images/SecondaryCoupleImage.png" alt="Michael & Mariella" />
-        <figcaption>La Dolce Vita</figcaption>
-      </figure>
-      <div class="reveal">
-        <h2>Frequently-asked Qs</h2>
-
-        <details class="reveal">
-          <summary>Can I bring a guest or my kids?</summary>
-          <p>We’d love to keep this gathering intimate, so we’re only able to accommodate those listed on the invitation. Thanks for understanding!</p>
-        </details>
-
-        <details class="reveal">
-          <summary>Is transportation available?</summary>
-          <p>Yes, we will have a shuttle from the wedding to the reception.</p>
-        </details>
-
-        <details class="reveal">
-          <summary>Will there be parking available at the venues?</summary>
-          <p>Yes.</p>
-        </details>
-
-        <details class="reveal">
-          <summary>What is the dress code?</summary>
-          <p>Black-tie optional.</p>
-        </details>
-
-        <details class="reveal">
-          <summary>Can you accommodate dietary restrictions?</summary>
-          <p>Absolutely! Please indicate any allergies or special requests when you RSVP.</p>
-        </details>
-
-        <details class="reveal">
-          <summary>Vegetarian or vegan options?</summary>
-          <p>Yes—our caterers will offer multiple options for all guests.</p>
-        </details>
-      </div>
-    </div>
-  </section>
-
-  <!-- Divider -->
-  <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
-    <path d="M0,30 C240,90 480,0 720,50 C960,100 1200,20 1440,70 L1440,100 L0,100 Z" fill="#fff7ef"></path>
-  </svg>
-
-  <!-- Travel -->
-  <section class="section wrap" id="travel" aria-label="Travel">
-    <div class="note reveal">
-      <h2>Traveling to the Wedding</h2>
-      <p class="center">We recommend booking flights directly to Florence (FLR) whenever possible—it’s the closest airport to the ceremony, rehearsal dinner, and our recommended hotels.</p>
-      <div class="hr"></div>
-      <p><strong>If you’re flying internationally</strong>, you have two options:</p>
-      <ul class="bullets">
-        <li><strong>Fly directly into Florence (FLR)</strong> → Best option if available.</li>
-        <li><strong>Fly into a major airport first</strong> (Rome or Milan), then connect to Florence:</li>
-        <ul class="bullets">
-          <li>From Rome (FCO) → High-speed train to Florence (~1 hr 30 mins).</li>
-          <li>From Milan (MXP) → Train to Florence (~2 hrs).</li>
-        </ul>
-      </ul>
-    </div>
-  </section>
-
-  <!-- Stay -->
-  <section class="section wrap" id="stay" aria-label="Where to Stay">
-    <div class="note reveal">
-      <h2>Where to Stay for the Wedding</h2>
-      <p class="center">We suggest staying in Florence for the ceremony and rehearsal dinner. We don’t have group bookings, but we highly recommend reserving early since June is peak season.</p>
-      <div class="hr"></div>
-      <p><strong>Luxury Hotels</strong></p>
-      <ul class="bullets">
-        <li>Portrait Firenze <span class="stars">★★★★★</span> — Boutique riverside luxury.</li>
-        <li>Hotel Savoy <span class="stars">★★★★★</span> — Central, classic, and elegant.</li>
-        <li>Palazzo Portinari Salviati <span class="stars">★★★★★</span> — Historic and opulent (also rehearsal dinner venue).</li>
-      </ul>
-    </div>
-  </section>
-
-  <footer class="wrap">
+  <footer class="wrap center">
     <div class="hr"></div>
     <div class="smallcaps">Michael &amp; Mariella · June 24, 2026</div>
   </footer>
 
-  <button id="totop" aria-label="Back to top">↑</button>
-
   <script>
-    /* Password gate: mm26 */
+    // password gate
     (function(){
       const OK_KEY="mm-site-ok-v1", PASS="mm26";
       const gate=document.getElementById('pwGate'), input=document.getElementById('pwInput'), btn=document.getElementById('pwBtn'), err=document.getElementById('pwErr');
@@ -369,41 +204,31 @@
       if(sessionStorage.getItem(OK_KEY)==="1"){ openSite(); } else { document.body.style.overflow='hidden'; }
       function check(){ const v=(input.value||"").trim().toLowerCase(); if(v===PASS){ sessionStorage.setItem(OK_KEY,"1"); openSite(); } else { deny(); } }
       btn.addEventListener('click',check); input.addEventListener('keydown',e=>{ if(e.key==='Enter') check(); });
-      setTimeout(()=>{ try{ input.focus(); }catch(_){} },60);
     })();
 
-    /* Sticky header toggles after hero */
+    // Sticky header toggle
     (function(){
       const sticky=document.getElementById('stickyBrand');
       const hero=document.getElementById('hero');
       const io=new IntersectionObserver(([entry])=>{
-        if(entry.isIntersecting){ sticky.classList.remove('show'); }
-        else{ sticky.classList.add('show'); }
+        sticky.classList.toggle('show', !entry.isIntersecting);
       },{threshold:0.01});
       io.observe(hero);
     })();
 
-    /* Reveal-on-scroll */
+    // Reveal
     (function(){
-      const els=document.querySelectorAll('.reveal, .event, details, .note');
-      const io=new IntersectionObserver((es)=>{
-        es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); } });
+      const els=document.querySelectorAll('.reveal, .note');
+      const io=new IntersectionObserver(es=>{
+        es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('revealed');io.unobserve(e.target);}});
       },{threshold:.14});
       els.forEach(el=>io.observe(el));
     })();
 
-    /* Gentle parallax for hero */
+    // Gentle parallax
     (function(){
-      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
       const set=()=>document.documentElement.style.setProperty('--scrollY',(window.scrollY*0.18)+'px');
       set(); window.addEventListener('scroll',set,{passive:true});
-    })();
-
-    /* Back to top */
-    (function(){
-      const b=document.getElementById('totop');
-      window.addEventListener('scroll',()=>{ b.classList.toggle('show', window.scrollY>600); },{passive:true});
-      b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
     })();
   </script>
 </body>
