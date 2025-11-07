@@ -6,17 +6,18 @@
   <title>Michael & Mariella — June 24, 2026</title>
   <meta name="description" content="Michael & Mariella — Wedding weekend details, RSVP, travel and hotel info for Florence, Italy." />
 
-  <!-- Elegant serif + classic display + airy body -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800;900&family=Cinzel:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800;900&family=Cinzel:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     :root{
-      --copper:#B95C33;          /* Copper / terracotta accent */
+      --copper:#B95C33;
       --copper-dark:#9e4c29;
-      --ink:#2a2a2a;             /* Deep charcoal text */
-      --paper:#fffaf5;           /* Warm paper background */
+      --ink:#2a2a2a;
+      --ink-soft:#3b312c;
+      --paper:#fffaf5;
       --paper-2:#fff7ef;
-      --line:#e9d8c9;            /* Soft divider */
+      --line:#e9d8c9;
       --shadow: 0 10px 30px rgba(0,0,0,.08);
       --max: 1050px;
     }
@@ -32,6 +33,29 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
     }
+
+    /* ---------- Sticky cursive header (appears after scroll) ---------- */
+    .sticky-brand{
+      position:fixed; inset:0 0 auto 0; height:64px;
+      display:flex; align-items:center; justify-content:center;
+      transform:translateY(-100%); transition:transform .35s ease, backdrop-filter .35s ease, background-color .35s ease;
+      z-index:50;
+      background:rgba(255,250,245,.35);
+      backdrop-filter:saturate(120%) blur(6px);
+      border-bottom:1px solid rgba(233,216,201,.6);
+    }
+    .sticky-brand.show{ transform:translateY(0); }
+    .brand-script{
+      font-family:"Great Vibes", cursive;
+      font-size:28px; line-height:1; color:var(--copper); letter-spacing:.02em;
+    }
+    .top-cta{
+      position:absolute; right:16px;
+      padding:10px 14px; border-radius:999px; border:1px solid var(--copper);
+      background:var(--copper); color:#fff; font-weight:700; text-decoration:none;
+      letter-spacing:.08em; text-transform:uppercase; font-size:.82rem;
+    }
+    .top-cta:hover{background:var(--copper-dark); border-color:var(--copper-dark)}
 
     /* ---------- Password Gate ---------- */
     .gate{
@@ -55,9 +79,7 @@
       color:var(--copper); font-size:1.05rem;
     }
     .gate p{margin:.25rem 0 1.1rem; opacity:.9}
-    .gate .field{
-      display:flex; gap:12px; justify-content:center; margin-top:.4rem;
-    }
+    .gate .field{display:flex; gap:12px; justify-content:center; margin-top:.4rem;}
     .gate input{
       font:700 1rem/1 "Libre Baskerville", serif;
       padding:14px 16px; border:1px solid var(--line); border-radius:12px;
@@ -72,7 +94,7 @@
     .gate button:hover{background:var(--copper-dark)}
     .gate .err{color:#a12626; font-size:.9rem; min-height:1.2em}
 
-    /* ---------- Global Utilities ---------- */
+    /* ---------- Utilities ---------- */
     .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
     .center{text-align:center}
     .hr{height:1px; background:var(--line); margin:24px 0}
@@ -82,14 +104,12 @@
     .hero{
       position:relative;
       min-height:78vh;
-      display:grid; place-items:end center;
+      display:grid; place-items:center;
       overflow:hidden; isolation:isolate;
       background:#000;
     }
     .hero::before{
-      /* HERO IMAGE — uses your exact filename */
-      content:"";
-      position:absolute; inset:0;
+      content:""; position:absolute; inset:0;
       background-image:url('images/WeddingHeroImage.png');
       background-size:cover; background-position:center;
       filter:grayscale(100%) contrast(1.05) brightness(.8);
@@ -112,24 +132,26 @@
       letter-spacing:.08em; text-transform:uppercase;
       font-size:clamp(44px, 9.5vw, 160px);
     }
-    .hero-card{
-      width:min(760px, 92vw);
-      margin:0 auto 40px; background:rgba(255,250,245,.92);
-      border:1px solid var(--line); border-radius:18px; padding:20px 22px 18px;
-      text-align:center; box-shadow:var(--shadow);
-      backdrop-filter:saturate(120%) blur(2px);
-    }
-    .hero-card .kicker{
-      color:var(--ink); opacity:.9; font-size:clamp(13px,1.8vw,14px);
-      letter-spacing:.25em; text-transform:uppercase;
-      font-family:"Playfair Display", serif; font-weight:600;
-    }
-    .hero-card .date{
-      margin-top:4px; color:var(--copper); font-weight:700;
-      letter-spacing:.18em; text-transform:uppercase; font-size:.95rem;
-    }
 
-    /* ---------- RSVP Button ---------- */
+    /* ---------- Post-hero intro (no box) ---------- */
+    .intro{
+      position:relative;
+      margin-top:-90px; /* gentle overlap onto the hero image */
+      padding:24px 0 8px;
+      text-align:center;
+      z-index:1;
+    }
+    .intro .kicker{
+      font-family:"Playfair Display", serif; font-weight:600;
+      letter-spacing:.25em; text-transform:uppercase;
+      color:rgba(43,43,43,.8);
+      text-shadow:0 1px 0 rgba(255,255,255,.25);
+    }
+    .intro .date{
+      margin-top:6px; color:rgba(185,92,51,.9); font-weight:800;
+      letter-spacing:.18em; text-transform:uppercase; font-size:1.05rem;
+      text-shadow:0 1px 0 rgba(255,255,255,.2);
+    }
     .cta{
       display:inline-block; margin-top:16px; margin-bottom:2px;
       padding:12px 20px; border-radius:999px;
@@ -139,18 +161,20 @@
     }
     .cta:hover{background:var(--copper-dark); border-color:var(--copper-dark)}
 
-    /* ---------- Iconed Schedule ---------- */
+    /* ---------- Schedule (icon column removed) ---------- */
     .section{padding:60px 0}
-    .two-col{
-      display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:start;
+    .events{
+      display:grid; gap:18px;
+      grid-template-columns:1fr; /* single column for a refined look */
     }
     .card{
       background:#fff; border:1px solid var(--line); border-radius:18px;
       box-shadow:var(--shadow); padding:26px;
+      transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease;
     }
+    .card.revealed{opacity:1; transform:translateY(0)}
     .icon{
       width:84px; height:84px; margin:0 auto 10px; display:block; opacity:.96;
-      filter:contrast(1.05) saturate(1);
     }
     .event h3{
       margin:.2rem 0 .25rem;
@@ -161,16 +185,6 @@
     .event p{margin:.1rem 0; text-align:center}
     .event .time{font-weight:700}
     .event .addr{opacity:.85}
-    .events{
-      display:grid; gap:18px;
-    }
-
-    /* ---------- Secondary CTA Block ---------- */
-    .rsvp-banner{
-      text-align:center; padding:44px 0 6px;
-    }
-    .rsvp-banner .sub{color:var(--copper); font-weight:800; letter-spacing:.22em; text-transform:uppercase}
-    .rsvp-banner .big{font-family:"Playfair Display",serif; font-weight:900; font-size:clamp(20px,3.4vw,26px); letter-spacing:.14em; text-transform:uppercase}
 
     /* ---------- FAQ ---------- */
     .faq{
@@ -183,12 +197,14 @@
     details{
       border-top:1px solid var(--line);
       padding:14px 2px;
+      transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease;
     }
     details:first-of-type{border-top:0}
+    details.revealed{opacity:1; transform:translateY(0)}
     summary{
       list-style:none; cursor:pointer; outline:none;
       display:flex; justify-content:space-between; align-items:center;
-      font-weight:700; letter-spacing:.05em;
+      font-weight:700; letter-spacing:.05em; color:var(--ink-soft);
     }
     summary::after{content:"+"; color:var(--copper); font-weight:900}
     details[open] summary::after{content:"–"}
@@ -198,33 +214,42 @@
     .note{
       background:var(--paper-2);
       border:1px solid var(--line); border-radius:18px; padding:24px;
+      transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease;
     }
+    .note.revealed{opacity:1; transform:translateY(0)}
     h2{
       font-family:"Playfair Display", serif;
       font-weight:900; letter-spacing:.18em; text-transform:uppercase;
       color:var(--copper); font-size:clamp(18px,3.2vw,22px);
-      margin:2px 0 14px;
-      text-align:center;
+      margin:2px 0 14px; text-align:center;
     }
     .bullets{margin:.4rem 0 0 0}
     .bullets li{margin:.25rem 0}
     .stars{color:var(--copper); letter-spacing:.06em}
 
     /* ---------- Footer ---------- */
-    footer{
-      padding:36px 0 54px; text-align:center; color:#7a6f67; font-size:.95rem;
+    footer{ padding:36px 0 54px; text-align:center; color:#7a6f67; font-size:.95rem; }
+
+    /* ---------- Motion preferences ---------- */
+    @media (prefers-reduced-motion: reduce){
+      *{animation: none !important; transition: none !important}
     }
 
     /* ---------- Responsiveness ---------- */
     @media (max-width: 900px){
-      .two-col{grid-template-columns:1fr}
       .faq{grid-template-columns:1fr}
       .hero{min-height:72vh}
-      .hero-card{margin-bottom:26px}
+      .intro{margin-top:-70px}
     }
   </style>
 </head>
 <body>
+
+  <!-- Sticky cursive brand -->
+  <div class="sticky-brand" id="stickyBrand" aria-hidden="true">
+    <div class="brand-script">Michael &amp; Mariella</div>
+    <a class="top-cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
+  </div>
 
   <!-- PASSWORD GATE -->
   <div class="gate" id="pwGate" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
@@ -243,96 +268,79 @@
   <!-- /PASSWORD GATE -->
 
   <!-- HERO -->
-  <header class="hero">
+  <header class="hero" id="hero">
     <div class="names"><h1>Michael &amp; Mariella</h1></div>
-    <div class="hero-card">
-      <div class="kicker">Our Wedding</div>
-      <div class="date">June 24, 2026</div>
-      <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
-    </div>
   </header>
 
-  <!-- SCHEDULE -->
+  <!-- Post-hero intro (no box; translucent text; slight overlap) -->
+  <section class="intro wrap">
+    <div class="kicker">Our Wedding</div>
+    <div class="date">June 24, 2026</div>
+    <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
+  </section>
+
+  <!-- SCHEDULE (left icon column removed) -->
   <section class="section wrap">
-    <div class="two-col">
-      <!-- Left: icons column -->
-      <div class="card center">
-        <img class="icon" src="images/WelcomeDinnerIcon.png" alt="Welcome dinner icon" />
-        <div class="hr"></div>
-        <img class="icon" src="images/WeddingIcon.png" alt="Ceremony icon" />
-        <div class="hr"></div>
-        <img class="icon" src="images/ReceptionIcon.png" alt="Reception icon" />
-      </div>
+    <div class="events">
+      <article class="card event reveal">
+        <img loading="lazy" class="icon" src="images/WelcomeDinnerIcon.png" alt="" />
+        <h3>Welcome Dinner</h3>
+        <p class="time">Tuesday, June 23rd, 2026 &middot; 7:30 PM</p>
+        <p class="addr">Palazzo Portinari Salviati — Florence, Italy</p>
+      </article>
 
-      <!-- Right: event details -->
-      <div class="events">
-        <article class="card event">
-          <img class="icon" src="images/WelcomeDinnerIcon.png" alt="" />
-          <h3>Welcome Dinner</h3>
-          <p class="time">Tuesday, June 23rd, 2026 &middot; 7:30 PM</p>
-          <p class="addr">Palazzo Portinari Salviati — Florence, Italy</p>
-        </article>
+      <article class="card event reveal">
+        <img loading="lazy" class="icon" src="images/WeddingIcon.png" alt="" />
+        <h3>The Ceremony</h3>
+        <p class="time">Wednesday, June 24th, 2026 &middot; 4:00 PM</p>
+        <p class="addr">
+          Basilica di Santa Maria Novella<br />
+          Piazza di Santa Maria Novella, 18 — 50123 Firenze FI, Italy
+        </p>
+      </article>
 
-        <article class="card event">
-          <img class="icon" src="images/WeddingIcon.png" alt="" />
-          <h3>The Ceremony</h3>
-          <p class="time">Wednesday, June 24th, 2026 &middot; 4:00 PM</p>
-          <p class="addr">
-            Basilica di Santa Maria Novella<br />
-            Piazza di Santa Maria Novella, 18 — 50123 Firenze FI, Italy
-          </p>
-        </article>
-
-        <article class="card event">
-          <img class="icon" src="images/ReceptionIcon.png" alt="" />
-          <h3>Reception</h3>
-          <p class="time">Wednesday, June 24th, 2026 &middot; 6:30 PM</p>
-          <p class="addr">Villa Cetinale — Str. di Cetinale, 9 — 53018 Sovicille SI, Italy</p>
-        </article>
-      </div>
-    </div>
-
-    <!-- RSVP banner -->
-    <div class="rsvp-banner">
-      <div class="sub">RSVP by January 31st</div>
-      <div class="big">RSVP Here</div>
-      <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">Open RSVP</a>
+      <article class="card event reveal">
+        <img loading="lazy" class="icon" src="images/ReceptionIcon.png" alt="" />
+        <h3>Reception</h3>
+        <p class="time">Wednesday, June 24th, 2026 &middot; 6:30 PM</p>
+        <p class="addr">Villa Cetinale — Str. di Cetinale, 9 — 53018 Sovicille SI, Italy</p>
+      </article>
     </div>
   </section>
 
   <!-- FAQ -->
   <section class="section wrap">
     <div class="faq">
-      <img src="images/SecondaryCoupleImage.png" alt="Michael & Mariella" />
-      <div class="card">
+      <img loading="lazy" src="images/SecondaryCoupleImage.png" alt="Michael & Mariella" class="reveal" />
+      <div class="card reveal">
         <h2>Frequently-asked Qs</h2>
 
-        <details>
+        <details class="reveal">
           <summary>Can I bring a guest or my kids?</summary>
           <p>We’d love to keep this gathering intimate, so we’re only able to accommodate those listed on the invitation. Thanks for understanding!</p>
         </details>
 
-        <details>
+        <details class="reveal">
           <summary>Is transportation available?</summary>
           <p>Yes, we will have a shuttle from the wedding to the reception.</p>
         </details>
 
-        <details>
+        <details class="reveal">
           <summary>Will there be parking available at the venues?</summary>
           <p>Yes.</p>
         </details>
 
-        <details>
+        <details class="reveal">
           <summary>What is the dress code?</summary>
           <p>Black-tie optional.</p>
         </details>
 
-        <details>
+        <details class="reveal">
           <summary>Can you accommodate dietary restrictions?</summary>
           <p>Absolutely! Please indicate any allergies or special requests when you RSVP.</p>
         </details>
 
-        <details>
+        <details class="reveal">
           <summary>Vegetarian or vegan options?</summary>
           <p>Yes—our caterers will offer multiple options for all guests.</p>
         </details>
@@ -342,7 +350,7 @@
 
   <!-- TRAVEL -->
   <section class="section wrap">
-    <div class="card">
+    <div class="note reveal">
       <h2>Traveling to the Wedding</h2>
       <p class="center">We recommend booking flights directly to Florence (FLR) whenever possible—it’s the closest airport to the ceremony, rehearsal dinner, and our recommended hotels.</p>
       <div class="hr"></div>
@@ -360,7 +368,7 @@
 
   <!-- STAY -->
   <section class="section wrap">
-    <div class="note">
+    <div class="note reveal">
       <h2>Where to Stay for the Wedding</h2>
       <p class="center">We suggest staying in Florence for the ceremony and rehearsal dinner. We don’t have group bookings, but we highly recommend reserving early since June is peak season.</p>
       <div class="hr"></div>
@@ -394,28 +402,44 @@
         gate.setAttribute('hidden','');
         document.body.style.overflow = 'auto';
       }
-      function deny(){
-        err.textContent = "That code didn’t work. Please try again.";
-      }
+      function deny(){ err.textContent = "That code didn’t work. Please try again."; }
 
-      // If already validated this session, skip the gate.
       if (sessionStorage.getItem(OK_KEY) === "1"){ openSite(); }
-      else {
-        document.body.style.overflow = 'hidden';
-      }
+      else { document.body.style.overflow = 'hidden'; }
 
       function check(){
         const val = (input.value || "").trim().toLowerCase();
-        if(val === PASS){
-          sessionStorage.setItem(OK_KEY, "1");
-          openSite();
-        } else { deny(); }
+        if(val === PASS){ sessionStorage.setItem(OK_KEY, "1"); openSite(); }
+        else { deny(); }
       }
-
       btn.addEventListener('click', check);
       input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') check(); });
-      // focus on mount
       setTimeout(()=>{ try{ input.focus(); }catch(e){} }, 60);
+    })();
+
+    /* Sticky cursive header after hero */
+    (function(){
+      const sticky = document.getElementById('stickyBrand');
+      const hero = document.getElementById('hero');
+      const io = new IntersectionObserver(([entry])=>{
+        if(entry.isIntersecting){ sticky.classList.remove('show'); }
+        else{ sticky.classList.add('show'); }
+      }, {threshold:0.01});
+      io.observe(hero);
+    })();
+
+    /* Simple reveal-on-scroll for cards/details/images */
+    (function(){
+      const els = document.querySelectorAll('.reveal, .card, details, .note');
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{
+          if(e.isIntersecting){
+            e.target.classList.add('revealed');
+            io.unobserve(e.target);
+          }
+        });
+      }, {threshold:.14});
+      els.forEach(el=>io.observe(el));
     })();
   </script>
 </body>
