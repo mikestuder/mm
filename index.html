@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Michael & Mariella — June 24, 2026</title>
+  <meta name="description" content="Michael & Mariella — Wedding weekend details, RSVP, travel and hotel info for Florence, Italy." />
+
+  <!-- Elegant serif + classic display + airy body -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800;900&family=Cinzel:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --copper:#B95C33;          /* Copper / terracotta accent */
+      --copper-dark:#9e4c29;
+      --ink:#2a2a2a;             /* Deep charcoal text */
+      --paper:#fffaf5;           /* Warm paper background */
+      --paper-2:#fff7ef;
+      --line:#e9d8c9;            /* Soft divider */
+      --shadow: 0 10px 30px rgba(0,0,0,.08);
+      --max: 1050px;
+    }
+
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--ink);
+      background:var(--paper);
+      font-family:"Libre Baskerville", Georgia, serif;
+      line-height:1.6;
+      letter-spacing:.1px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* ---------- Password Gate ---------- */
+    .gate{
+      position:fixed; inset:0; z-index:9999;
+      display:flex; align-items:center; justify-content:center;
+      background:
+        radial-gradient(80% 60% at 50% 20%, rgba(185,92,51,.12), rgba(255,250,245,.85) 60%),
+        var(--paper);
+      transition:opacity .35s ease;
+    }
+    .gate[hidden]{opacity:0; pointer-events:none}
+    .gate-card{
+      width:min(560px,92vw);
+      background:#fff; border:1px solid var(--line);
+      padding:28px 26px; border-radius:18px; box-shadow:var(--shadow);
+      text-align:center;
+    }
+    .gate h1{
+      margin:.2rem 0 1rem; font-family:"Playfair Display", serif;
+      font-weight:900; letter-spacing:.14em; text-transform:uppercase;
+      color:var(--copper); font-size:1.05rem;
+    }
+    .gate p{margin:.25rem 0 1.1rem; opacity:.9}
+    .gate .field{
+      display:flex; gap:12px; justify-content:center; margin-top:.4rem;
+    }
+    .gate input{
+      font:700 1rem/1 "Libre Baskerville", serif;
+      padding:14px 16px; border:1px solid var(--line); border-radius:12px;
+      width:180px; text-align:center; letter-spacing:.16em; text-transform:uppercase;
+      background:#fffdf9;
+    }
+    .gate button{
+      padding:14px 18px; border-radius:12px; border:1px solid var(--copper);
+      background:var(--copper); color:#fff; font-weight:700; cursor:pointer;
+      letter-spacing:.08em; text-transform:uppercase;
+    }
+    .gate button:hover{background:var(--copper-dark)}
+    .gate .err{color:#a12626; font-size:.9rem; min-height:1.2em}
+
+    /* ---------- Global Utilities ---------- */
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
+    .center{text-align:center}
+    .hr{height:1px; background:var(--line); margin:24px 0}
+    .smallcaps{letter-spacing:.2em; text-transform:uppercase}
+
+    /* ---------- HERO ---------- */
+    .hero{
+      position:relative;
+      min-height:78vh;
+      display:grid; place-items:end center;
+      overflow:hidden; isolation:isolate;
+      background:#000;
+    }
+    .hero::before{
+      /* PUT YOUR HERO IMAGE HERE */
+      content:"";
+      position:absolute; inset:0;
+      background-image:url('PUT-YOUR-IMAGE-HERO.jpg'); /* e.g., a NYC street b/w photo */
+      background-size:cover; background-position:center;
+      filter:grayscale(100%) contrast(1.05) brightness(.8);
+      opacity:.9; z-index:-2;
+    }
+    .hero::after{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.0) 60%);
+      z-index:-1;
+    }
+    .names{
+      position:absolute; inset:0;
+      display:grid; place-items:center;
+      pointer-events:none;
+    }
+    .names h1{
+      margin:0; line-height:.82; text-align:center;
+      font-family:"Cinzel", serif; font-weight:700;
+      color:var(--copper); mix-blend-mode:screen;
+      letter-spacing:.08em; text-transform:uppercase;
+      font-size:clamp(44px, 9.5vw, 160px);
+    }
+    .hero-card{
+      width:min(760px, 92vw);
+      margin:0 auto 40px; background:rgba(255,250,245,.92);
+      border:1px solid var(--line); border-radius:18px; padding:20px 22px 18px;
+      text-align:center; box-shadow:var(--shadow);
+      backdrop-filter:saturate(120%) blur(2px);
+    }
+    .hero-card .kicker{
+      color:var(--ink); opacity:.9; font-size:clamp(13px,1.8vw,14px);
+      letter-spacing:.25em; text-transform:uppercase;
+      font-family:"Playfair Display", serif; font-weight:600;
+    }
+    .hero-card .date{
+      margin-top:4px; color:var(--copper); font-weight:700;
+      letter-spacing:.18em; text-transform:uppercase; font-size:.95rem;
+    }
+
+    /* ---------- RSVP Button ---------- */
+    .cta{
+      display:inline-block; margin-top:16px; margin-bottom:2px;
+      padding:12px 20px; border-radius:999px;
+      border:1px solid var(--copper); color:#fff; background:var(--copper);
+      text-decoration:none; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
+      font-size:.92rem;
+    }
+    .cta:hover{background:var(--copper-dark); border-color:var(--copper-dark)}
+
+    /* ---------- Iconed Schedule ---------- */
+    .section{padding:60px 0}
+    .two-col{
+      display:grid; grid-template-columns:1.1fr .9fr; gap:24px; align-items:start;
+    }
+    .card{
+      background:#fff; border:1px solid var(--line); border-radius:18px;
+      box-shadow:var(--shadow); padding:26px;
+    }
+    .icon{
+      width:84px; height:84px; margin:0 auto 10px; display:block; opacity:.96;
+      filter:contrast(1.05) saturate(1);
+    }
+    .event h3{
+      margin:.2rem 0 .25rem;
+      font-family:"Playfair Display", serif; font-weight:900;
+      color:var(--copper); letter-spacing:.16em; text-transform:uppercase;
+      text-align:center; font-size:1rem;
+    }
+    .event p{margin:.1rem 0; text-align:center}
+    .event .time{font-weight:700}
+    .event .addr{opacity:.85}
+    .events{
+      display:grid; gap:18px;
+    }
+
+    /* ---------- Secondary CTA Block ---------- */
+    .rsvp-banner{
+      text-align:center; padding:44px 0 6px;
+    }
+    .rsvp-banner .sub{color:var(--copper); font-weight:800; letter-spacing:.22em; text-transform:uppercase}
+    .rsvp-banner .big{font-family:"Playfair Display",serif; font-weight:900; font-size:clamp(20px,3.4vw,26px); letter-spacing:.14em; text-transform:uppercase}
+
+    /* ---------- FAQ ---------- */
+    .faq{
+      display:grid; grid-template-columns: 1fr 1.05fr; gap:26px; align-items:start;
+    }
+    .faq img{
+      width:100%; height:auto; border-radius:18px; border:1px solid var(--line);
+      box-shadow:var(--shadow); object-fit:cover; object-position:center;
+    }
+    details{
+      border-top:1px solid var(--line);
+      padding:14px 2px;
+    }
+    details:first-of-type{border-top:0}
+    summary{
+      list-style:none; cursor:pointer; outline:none;
+      display:flex; justify-content:space-between; align-items:center;
+      font-weight:700; letter-spacing:.05em;
+    }
+    summary::after{content:"+"; color:var(--copper); font-weight:900}
+    details[open] summary::after{content:"–"}
+    details p{margin:.6rem 0 .2rem}
+
+    /* ---------- Travel & Stay ---------- */
+    .note{
+      background:var(--paper-2);
+      border:1px solid var(--line); border-radius:18px; padding:24px;
+    }
+    h2{
+      font-family:"Playfair Display", serif;
+      font-weight:900; letter-spacing:.18em; text-transform:uppercase;
+      color:var(--copper); font-size:clamp(18px,3.2vw,22px);
+      margin:2px 0 14px;
+      text-align:center;
+    }
+    .bullets{margin:.4rem 0 0 0}
+    .bullets li{margin:.25rem 0}
+    .stars{color:var(--copper); letter-spacing:.06em}
+
+    /* ---------- Footer ---------- */
+    footer{
+      padding:36px 0 54px; text-align:center; color:#7a6f67; font-size:.95rem;
+    }
+
+    /* ---------- Responsiveness ---------- */
+    @media (max-width: 900px){
+      .two-col{grid-template-columns:1fr}
+      .faq{grid-template-columns:1fr}
+      .hero{min-height:72vh}
+      .hero-card{margin-bottom:26px}
+    }
+  </style>
+</head>
+<body>
+
+  <!-- PASSWORD GATE -->
+  <div class="gate" id="pwGate" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
+    <div class="gate-card">
+      <div class="smallcaps" style="color:var(--copper); font-weight:800;">Private Site</div>
+      <h1 id="pwTitle">Michael &amp; Mariella</h1>
+      <p>Please enter the code to view our wedding details.</p>
+      <div class="field">
+        <input id="pwInput" placeholder="Enter code" aria-label="Password code" autocomplete="off" />
+        <button id="pwBtn" aria-label="Unlock site">Enter</button>
+      </div>
+      <div class="err" id="pwErr" role="status" aria-live="polite"></div>
+      <p style="margin-top:12px; font-size:.9rem; opacity:.75">Hint: lower-case letters &amp; numbers.</p>
+    </div>
+  </div>
+  <!-- /PASSWORD GATE -->
+
+  <!-- HERO -->
+  <header class="hero">
+    <div class="names"><h1>Michael &amp; Mariella</h1></div>
+    <div class="hero-card">
+      <div class="kicker">Our Wedding</div>
+      <div class="date">June 24, 2026</div>
+      <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
+    </div>
+  </header>
+
+  <!-- SCHEDULE -->
+  <section class="section wrap">
+    <div class="two-col">
+      <!-- Left: playful icons column (you can drop extra content here if desired) -->
+      <div class="card center">
+        <img class="icon" src="PUT-YOUR-IMAGE-ICON-1.svg" alt="" />
+        <div class="hr"></div>
+        <img class="icon" src="PUT-YOUR-IMAGE-ICON-2.svg" alt="" />
+        <div class="hr"></div>
+        <img class="icon" src="PUT-YOUR-IMAGE-ICON-3.svg" alt="" />
+      </div>
+
+      <!-- Right: event details -->
+      <div class="events">
+        <article class="card event">
+          <img class="icon" src="PUT-YOUR-IMAGE-ICON-WELCOME.svg" alt="" />
+          <h3>Welcome Dinner</h3>
+          <p class="time">Tuesday, June 23rd, 2026 &middot; 7:30 PM</p>
+          <p class="addr">Palazzo Portinari Salviati — Florence, Italy</p>
+        </article>
+
+        <article class="card event">
+          <img class="icon" src="PUT-YOUR-IMAGE-ICON-CHURCH.svg" alt="" />
+          <h3>The Ceremony</h3>
+          <p class="time">Wednesday, June 24th, 2026 &middot; 4:00 PM</p>
+          <p class="addr">
+            Basilica di Santa Maria Novella<br />
+            Piazza di Santa Maria Novella, 18 — 50123 Firenze FI, Italy
+          </p>
+        </article>
+
+        <article class="card event">
+          <img class="icon" src="PUT-YOUR-IMAGE-ICON-RECEPTION.svg" alt="" />
+          <h3>Reception</h3>
+          <p class="time">Wednesday, June 24th, 2026 &middot; 6:30 PM</p>
+          <p class="addr">Villa Cetinale — Str. di Cetinale, 9 — 53018 Sovicille SI, Italy</p>
+        </article>
+      </div>
+    </div>
+
+    <!-- RSVP banner -->
+    <div class="rsvp-banner">
+      <div class="sub">RSVP by January 31st</div>
+      <div class="big">RSVP Here</div>
+      <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">Open RSVP</a>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="section wrap">
+    <div class="faq">
+      <img src="PUT-YOUR-IMAGE-PORTRAIT.jpg" alt="A favorite photo of Michael & Mariella" />
+      <div class="card">
+        <h2>Frequently-asked Qs</h2>
+
+        <details>
+          <summary>Can I bring a guest or my kids?</summary>
+          <p>We’d love to keep this gathering intimate, so we’re only able to accommodate those listed on the invitation. Thanks for understanding!</p>
+        </details>
+
+        <details>
+          <summary>Is transportation available?</summary>
+          <p>Yes, we will have a shuttle from the wedding to the reception.</p>
+        </details>
+
+        <details>
+          <summary>Will there be parking available at the venues?</summary>
+          <p>Yes.</p>
+        </details>
+
+        <details>
+          <summary>What is the dress code?</summary>
+          <p>Black-tie optional.</p>
+        </details>
+
+        <details>
+          <summary>Can you accommodate dietary restrictions?</summary>
+          <p>Absolutely! Please indicate any allergies or special requests when you RSVP.</p>
+        </details>
+
+        <details>
+          <summary>Vegetarian or vegan options?</summary>
+          <p>Yes—our caterers will offer multiple options for all guests.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAVEL -->
+  <section class="section wrap">
+    <div class="card">
+      <h2>Traveling to the Wedding</h2>
+      <p class="center">We recommend booking flights directly to Florence (FLR) whenever possible—it’s the closest airport to the ceremony, rehearsal dinner, and our recommended hotels.</p>
+      <div class="hr"></div>
+      <p><strong>If you’re flying internationally</strong>, you have two options:</p>
+      <ul class="bullets">
+        <li><strong>Fly directly into Florence (FLR)</strong> → Best option if available.</li>
+        <li><strong>Fly into a major airport first</strong> (Rome or Milan), then connect to Florence:</li>
+        <ul class="bullets">
+          <li>From Rome (FCO) → High-speed train to Florence (~1 hr 30 mins).</li>
+          <li>From Milan (MXP) → Train to Florence (~2 hrs).</li>
+        </ul>
+      </ul>
+    </div>
+  </section>
+
+  <!-- STAY -->
+  <section class="section wrap">
+    <div class="note">
+      <h2>Where to Stay for the Wedding</h2>
+      <p class="center">We suggest staying in Florence for the ceremony and rehearsal dinner. We don’t have group bookings, but we highly recommend reserving early since June is peak season.</p>
+      <div class="hr"></div>
+      <p><strong>Luxury Hotels</strong></p>
+      <ul class="bullets">
+        <li>Portrait Firenze <span class="stars">★★★★★</span> — Boutique riverside luxury.</li>
+        <li>Hotel Savoy <span class="stars">★★★★★</span> — Central, classic, and elegant.</li>
+        <li>Palazzo Portinari Salviati <span class="stars">★★★★★</span> — Historic and opulent (also rehearsal dinner venue).</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer class="wrap">
+    <div class="hr"></div>
+    <div class="smallcaps">Michael &amp; Mariella &middot; June 24, 2026</div>
+  </footer>
+
+  <script>
+    /* Simple client-side password gate (for static hosting)
+       Code: mm26 (case-insensitive). Stores a flag in sessionStorage. */
+    (function(){
+      const OK_KEY = "mm-site-ok-v1";
+      const PASS = "mm26";
+
+      const gate = document.getElementById('pwGate');
+      const input = document.getElementById('pwInput');
+      const btn = document.getElementById('pwBtn');
+      const err = document.getElementById('pwErr');
+
+      function openSite(){
+        gate.setAttribute('hidden','');
+        document.body.style.overflow = 'auto';
+      }
+      function deny(){
+        err.textContent = "That code didn’t work. Please try again.";
+      }
+
+      // If already validated this session, skip the gate.
+      if (sessionStorage.getItem(OK_KEY) === "1"){ openSite(); }
+      else {
+        document.body.style.overflow = 'hidden';
+      }
+
+      function check(){
+        const val = (input.value || "").trim().toLowerCase();
+        if(val === PASS){
+          sessionStorage.setItem(OK_KEY, "1");
+          openSite();
+        } else { deny(); }
+      }
+
+      btn.addEventListener('click', check);
+      input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') check(); });
+      // focus on mount
+      setTimeout(()=>{ try{ input.focus(); }catch(e){} }, 60);
+    })();
+  </script>
+</body>
+</html>
