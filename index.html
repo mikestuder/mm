@@ -6,7 +6,7 @@
   <title>Michael & Mariella — June 24, 2026</title>
   <meta name="description" content="Michael & Mariella — Wedding weekend details, RSVP, travel and hotel info for Florence, Italy." />
 
-  <!-- Social share polish (update the og:image URL after publishing if you want) -->
+  <!-- Social share -->
   <meta property="og:title" content="Michael & Mariella · June 24, 2026">
   <meta property="og:description" content="Florence, Italy · Ceremony, dinner, travel & hotel details">
   <meta property="og:image" content="images/WeddingHeroImage.png">
@@ -21,139 +21,80 @@
 
   <style>
     :root{
-      --copper:#B95C33;
-      --copper-dark:#9e4c29;
-      --ink:#2a2a2a;
-      --ink-soft:#3b312c;
-      --paper:#fffaf5;
-      --paper-2:#fff7ef;
-      --line:#e9d8c9;
-      --max: 1060px;
-      --scrollY: 0px;   /* for parallax */
-      --rhythm: 72px;   /* vertical spacing rhythm */
+      --copper:#B95C33; --copper-dark:#9e4c29;
+      --ink:#2a2a2a; --ink-soft:#3b312c;
+      --paper:#fffaf5; --paper-2:#fff7ef; --line:#e9d8c9;
+      --max: 1060px; --scrollY: 0px; --rhythm: 72px;
     }
-
     html,body{height:100%}
     body{
-      margin:0;
-      color:var(--ink);
-      background:var(--paper);
-      font-family:"Libre Baskerville", Georgia, serif;
-      line-height:1.6;
-      letter-spacing:.1px;
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
+      margin:0; color:var(--ink); background:var(--paper);
+      font-family:"Libre Baskerville", Georgia, serif; line-height:1.6; letter-spacing:.1px;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    /* ---------- Sticky cursive header with tiny nav ---------- */
+    /* Sticky cursive header */
     .sticky-brand{
-      position:fixed; inset:0 0 auto 0; height:64px;
+      position:fixed; inset:0 0 auto 0; height:64px; z-index:60;
       display:flex; align-items:center; justify-content:center;
       transform:translateY(-100%); transition:transform .35s ease, backdrop-filter .35s ease, background-color .35s ease;
-      z-index:60;
-      background:rgba(255,250,245,.4);
-      backdrop-filter:saturate(120%) blur(6px);
+      background:rgba(255,250,245,.4); backdrop-filter:saturate(120%) blur(6px);
       border-bottom:1px solid rgba(233,216,201,.6);
     }
     .sticky-brand.show{ transform:translateY(0); }
     .brand-script{ font-family:"Great Vibes", cursive; font-size:28px; color:var(--copper) }
-    .top-cta{
-      position:absolute; right:16px;
-      padding:10px 14px; border-radius:999px; border:1px solid var(--copper);
-      background:var(--copper); color:#fff; font-weight:700; text-decoration:none;
-      letter-spacing:.08em; text-transform:uppercase; font-size:.82rem;
-    }
-    .top-cta:hover{background:var(--copper-dark); border-color:var(--copper-dark)}
     .tiny-nav{ position:absolute; left:16px; display:flex; gap:14px; font-size:.88rem }
     .tiny-nav a{ color:inherit; text-decoration:none }
     .tiny-nav a:hover{ color:var(--copper) }
+    .top-cta{
+      position:absolute; right:16px; padding:10px 14px; border-radius:999px;
+      border:1px solid var(--copper); background:var(--copper); color:#fff;
+      font-weight:700; text-decoration:none; letter-spacing:.08em; text-transform:uppercase; font-size:.82rem;
+    }
+    .top-cta:hover{background:var(--copper-dark); border-color:var(--copper-dark)}
 
-    /* ---------- Password Gate ---------- */
-    .gate{
-      position:fixed; inset:0; z-index:9999;
-      display:flex; align-items:center; justify-content:center;
-      background:
-        radial-gradient(80% 60% at 50% 20%, rgba(185,92,51,.12), rgba(255,250,245,.85) 60%),
-        var(--paper);
+    /* Password gate */
+    .gate{ position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center;
+      background: radial-gradient(80% 60% at 50% 20%, rgba(185,92,51,.12), rgba(255,250,245,.85) 60%), var(--paper);
       transition:opacity .35s ease;
     }
     .gate[hidden]{opacity:0; pointer-events:none}
-    .gate-card{
-      width:min(560px,92vw);
-      background:#fff; border:1px solid var(--line);
-      padding:28px 26px; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.08);
-      text-align:center;
-    }
-    .gate h1{
-      margin:.2rem 0 1rem; font-family:"Playfair Display", serif;
-      font-weight:900; letter-spacing:.14em; text-transform:uppercase;
-      color:var(--copper); font-size:1.05rem;
-    }
-    .gate p{margin:.25rem 0 1.1rem; opacity:.9}
-    .gate .field{display:flex; gap:12px; justify-content:center; margin-top:.4rem;}
-    .gate input{
-      font:700 1rem/1 "Libre Baskerville", serif;
-      padding:14px 16px; border:1px solid var(--line); border-radius:12px;
-      width:180px; text-align:center; letter-spacing:.16em; text-transform:uppercase;
-      background:#fffdf9;
-    }
-    .gate button{
-      padding:14px 18px; border-radius:12px; border:1px solid var(--copper);
-      background:var(--copper); color:#fff; font-weight:700; cursor:pointer;
-      letter-spacing:.08em; text-transform:uppercase;
-    }
-    .gate button:hover{background:var(--copper-dark)}
-    .gate .err{color:#a12626; font-size:.9rem; min-height:1.2em}
+    .gate-card{ width:min(560px,92vw); background:#fff; border:1px solid var(--line); padding:28px 26px; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.08); text-align:center }
+    .gate h1{ margin:.2rem 0 1rem; font-family:"Playfair Display", serif; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color:var(--copper); font-size:1.05rem }
+    .gate .field{ display:flex; gap:12px; justify-content:center; margin-top:.4rem }
+    .gate input{ font:700 1rem/1 "Libre Baskerville", serif; padding:14px 16px; border:1px solid var(--line); border-radius:12px; width:180px; text-align:center; letter-spacing:.16em; text-transform:uppercase; background:#fffdf9 }
+    .gate button{ padding:14px 18px; border-radius:12px; border:1px solid var(--copper); background:var(--copper); color:#fff; font-weight:700; cursor:pointer; letter-spacing:.08em; text-transform:uppercase }
+    .gate button:hover{ background:var(--copper-dark) }
+    .gate .err{ color:#a12626; font-size:.9rem; min-height:1.2em }
 
-    /* ---------- Utilities ---------- */
+    /* Utilities */
     .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
     .center{text-align:center}
     .hr{height:1px; background:var(--line); margin:24px 0}
     .smallcaps{letter-spacing:.2em; text-transform:uppercase}
 
-    /* ---------- HERO ---------- */
+    /* HERO */
     .hero{
-      position:relative;
-      min-height:94vh;                     /* taller hero */
-      display:grid; place-items:center;
-      overflow:hidden; isolation:isolate;
-      background:#000;
+      position:relative; min-height:94vh; display:grid; place-items:center;
+      overflow:hidden; isolation:isolate; background:#000;
     }
     .hero::before{
       content:""; position:absolute; inset:0;
-      background-image:url('images/WeddingHeroImage.png');
-      background-size:cover;
-      background-position:center calc(50% + var(--scrollY)); /* gentle parallax */
-      filter:grayscale(100%) contrast(1.05) brightness(.8);
-      opacity:.9; z-index:-2;
+      background-image:url('images/WeddingHeroImage.png'); background-size:cover;
+      background-position:center calc(50% + var(--scrollY));
+      filter:grayscale(100%) contrast(1.05) brightness(.8); opacity:.9; z-index:-2;
     }
-    .hero::after{
-      content:""; position:absolute; inset:0;
-      background:linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.0) 60%);
-      z-index:-1;
-    }
-    .names{
-      position:absolute; inset:0;
-      display:grid; place-items:center;
-      pointer-events:none;
-    }
+    .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.0) 60%); z-index:-1 }
+    .names{ position:absolute; inset:0; display:grid; place-items:center; pointer-events:none }
     .names h1{
-      margin:0; line-height:.82; text-align:center;
-      font-family:"Playfair Display", serif; font-weight:900;
+      margin:0; line-height:.82; text-align:center; font-family:"Playfair Display", serif; font-weight:900;
       background: linear-gradient(180deg, #c57044 0%, #b95c33 40%, #9e4c29 100%);
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      letter-spacing:.08em; text-transform:uppercase;
-      font-size:clamp(42px, 9.2vw, 160px);
-      opacity:.92;
+      letter-spacing:.08em; text-transform:uppercase; font-size:clamp(42px, 9.2vw, 160px); opacity:.92;
     }
-    /* copper “tint” for editorial vibe */
-    .hero .tint{
-      position:absolute; inset:0; z-index: -1;
-      background: radial-gradient(120% 90% at 50% -10%, rgba(185,92,51,.28), transparent 50%),
-                  linear-gradient(to bottom, rgba(185,92,51,.18), transparent 30%);
-      mix-blend-mode: multiply;
-    }
-    /* tiny “twinkles” */
+    .hero .tint{ position:absolute; inset:0; z-index:-1; background:
+      radial-gradient(120% 90% at 50% -10%, rgba(185,92,51,.28), transparent 50%),
+      linear-gradient(to bottom, rgba(185,92,51,.18), transparent 30%); mix-blend-mode:multiply }
     .names::after{
       content:""; position:absolute; inset:0; pointer-events:none;
       background:
@@ -162,118 +103,91 @@
         radial-gradient(circle at 60% 75%, rgba(255,255,255,.15) 0 2px, transparent 3px);
       animation: twinkle 6s ease-in-out infinite alternate;
     }
-    @keyframes twinkle { from {opacity:.25; transform:translateY(0)} to {opacity:.6; transform:translateY(-4px)} }
+    @keyframes twinkle{ from{opacity:.25; transform:translateY(0)} to{opacity:.6; transform:translateY(-4px)} }
 
-    /* ---------- Intro BELOW the hero ---------- */
-    .intro{
-      margin-top:0;         /* no overlap */
-      padding: calc(var(--rhythm)/2) 0 8px;
-      text-align:center;
-    }
+    /* Intro below hero */
+    .intro{ position:relative; margin-top:0; padding: calc(var(--rhythm)/2) 0 8px; text-align:center; z-index:1 }
     .intro .kicker{
-      font-family:"Playfair Display", serif; font-weight:600;
-      letter-spacing:.25em; text-transform:uppercase;
-      color:rgba(43,43,43,.8);
-      text-shadow:0 1px 0 rgba(255,255,255,.25);
+      font-family:"Playfair Display", serif; font-weight:600; letter-spacing:.25em; text-transform:uppercase;
+      color:rgba(43,43,43,.86); text-shadow:0 1px 0 rgba(255,255,255,.25);
       display:inline-block; padding-bottom:8px; position:relative;
     }
     .intro .kicker::after{
-      /* hand-drawn underline */
       content:""; position:absolute; left:0; right:0; bottom:0; height:12px;
       background: radial-gradient(60% 220% at 50% 200%, rgba(185,92,51,.65) 0 30%, transparent 31%);
       mask: linear-gradient(#000 0 0) left / 0% 100% no-repeat;
       -webkit-mask: linear-gradient(#000 0 0) left / 0% 100% no-repeat;
       animation: draw 1.8s ease .4s forwards; opacity:.8;
     }
-    @keyframes draw { to { mask-size:100% 100%; -webkit-mask-size:100% 100%; } }
+    @keyframes draw{ to{mask-size:100% 100%; -webkit-mask-size:100% 100%} }
     .intro .date{ margin-top:6px; color:rgba(185,92,51,.9); font-weight:800; letter-spacing:.18em; text-transform:uppercase; font-size:1.05rem; text-shadow:0 1px 0 rgba(255,255,255,.2) }
-    .cta{
-      display:inline-block; margin-top:16px; padding:12px 20px; border-radius:999px;
-      border:1px solid var(--copper); color:#fff; background:var(--copper);
-      text-decoration:none; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.92rem;
-    }
-    .cta:hover{background:var(--copper-dark); border-color:var(--copper-dark)}
+    .cta{ display:inline-block; margin-top:16px; padding:12px 20px; border-radius:999px; border:1px solid var(--copper); color:#fff; background:var(--copper); text-decoration:none; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.92rem }
+    .cta:hover{ background:var(--copper-dark); border-color:var(--copper-dark) }
 
-    /* ---------- Section rhythm ---------- */
+    /* Sections */
     .section{ padding: var(--rhythm) 0; }
+    .wrap{ scroll-margin-top:80px } /* anchor target spacing under sticky header */
 
-    /* ---------- Events: boxes removed, icons left ---------- */
+    /* Events (no boxes; icons left) */
     .events{ position:relative; display:grid; gap:28px }
-    /* delicate copper vertical rule */
-    .events::before{
-      content:""; position:absolute; left:40px; top:0; bottom:0;
-      width:1px; background:linear-gradient(#e9d8c9,#d9b9a7,#e9d8c9);
-    }
-    .event{
-      display:grid; grid-template-columns: 110px 1fr; align-items:center;
-      gap:18px; padding:8px 6px;
-      transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease;
-    }
-    .event.revealed{opacity:1; transform:translateY(0)}
+    .events::before{ content:""; position:absolute; left:40px; top:0; bottom:0; width:1px; background:linear-gradient(#e9d8c9,#d9b9a7,#e9d8c9) }
+    .event{ display:grid; grid-template-columns:110px 1fr; align-items:center; gap:18px; padding:8px 6px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
+    .event.revealed{ opacity:1; transform:translateY(0) }
     .event .icon{ width:96px; height:96px; display:block; margin:0 auto; filter:contrast(1.05) saturate(1); opacity:.96; transition:transform .22s ease }
     .event:hover .icon{ transform: translateY(-3px) scale(1.02) }
-    .event h3{
-      margin:0 0 4px 0; text-align:left;
-      font-family:"Playfair Display", serif; font-weight:900;
-      color:var(--copper); letter-spacing:.16em; text-transform:uppercase; font-size:1.05rem;
-    }
-    .event p{margin:.1rem 0; text-align:left}
+    .event h3{ margin:0 0 4px 0; text-align:left; font-family:"Playfair Display", serif; font-weight:900; color:var(--copper); letter-spacing:.16em; text-transform:uppercase; font-size:1.05rem }
     .event .time{ font-weight:700; opacity:.9; margin-bottom:2px }
     .event .addr{ color:#5a524d; margin-top:0 }
 
-    /* ---------- FAQ (polaroid) ---------- */
+    /* FAQ (polaroid) */
     .faq{ display:grid; grid-template-columns: 1fr 1.05fr; gap:26px; align-items:start }
     .faq figure{ margin:0; position:relative; transform: rotate(-1.2deg) }
-    .faq figure img{ width:100%; height:auto; border-radius:10px; border:1px solid var(--line); box-shadow: 0 18px 40px rgba(0,0,0,.12); object-fit:cover }
+    .faq figure img{ width:100%; height:auto; border-radius:10px; border:1px solid var(--line); box-shadow:0 18px 40px rgba(0,0,0,.12); object-fit:cover }
     .faq figcaption{ text-align:center; font-family:"Great Vibes", cursive; color:var(--copper); font-size:22px; margin-top:10px }
     details{ border-top:1px solid var(--line); padding:14px 2px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
     details:first-of-type{border-top:0}
-    details.revealed{opacity:1; transform:translateY(0)}
-    summary{ list-style:none; cursor:pointer; outline:none; display:flex; justify-content:space-between; align-items:center; font-weight:700; letter-spacing:.05em; color:var(--ink-soft) }
-    summary::after{content:"+"; color:var(--copper); font-weight:900}
-    details[open] summary::after{content:"–"}
-    details p{margin:.6rem 0 .2rem}
+    details.revealed{ opacity:1; transform:translateY(0) }
+    summary{ list-style:none; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-weight:700; letter-spacing:.05em; color:var(--ink-soft) }
+    summary::after{ content:"+"; color:var(--copper); font-weight:900 }
+    details[open] summary::after{ content:"–" }
+    details p{ margin:.6rem 0 .2rem }
 
-    /* ---------- Notes (Travel / Stay) ---------- */
+    /* Notes */
     .note{ background:var(--paper-2); border:1px solid var(--line); border-radius:18px; padding:24px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
-    .note.revealed{opacity:1; transform:translateY(0)}
+    .note.revealed{ opacity:1; transform:translateY(0) }
     h2{ font-family:"Playfair Display", serif; font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--copper); font-size:clamp(18px,3.2vw,22px); margin:2px 0 14px; text-align:center }
-    .bullets{margin:.4rem 0 0 0}
-    .bullets li{margin:.25rem 0}
-    .stars{color:var(--copper); letter-spacing:.06em}
+    .bullets{margin:.4rem 0 0 0} .bullets li{margin:.25rem 0} .stars{color:var(--copper); letter-spacing:.06em}
 
-    /* ---------- Wavy divider ---------- */
-    .wave{ display:block; width:100%; height:70px; margin: 24px 0 -6px; opacity:.65; filter: drop-shadow(0 6px 10px rgba(0,0,0,.05)) }
+    /* Wavy divider */
+    .wave{ display:block; width:100%; height:70px; margin:24px 0 -6px; opacity:.65; filter: drop-shadow(0 6px 10px rgba(0,0,0,.05)) }
 
-    /* ---------- Back to top ---------- */
+    /* Back to top */
     #totop{ position:fixed; right:16px; bottom:16px; padding:10px 12px; border-radius:999px; border:1px solid var(--copper); background:#fff; color:var(--copper); font-weight:700; box-shadow:0 6px 18px rgba(0,0,0,.08); opacity:0; pointer-events:none; transition:.25s }
     #totop.show{ opacity:1; pointer-events:auto }
 
-    /* ---------- Texture overlay ---------- */
-    .texture{ position: fixed; inset: 0; pointer-events: none; z-index: 2; opacity: .14; mix-blend-mode: multiply; background-image: radial-gradient(rgba(0,0,0,.06) 0.5px, transparent 0.5px); background-size: 2px 2px }
+    /* Texture overlay */
+    .texture{ position:fixed; inset:0; pointer-events:none; z-index:2; opacity:.14; mix-blend-mode:multiply; background-image:radial-gradient(rgba(0,0,0,.06) 0.5px, transparent 0.5px); background-size:2px 2px }
 
-    /* ---------- Motion prefs ---------- */
+    /* Motion & responsive */
     @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} .texture{display:none} }
-
-    /* ---------- Responsive ---------- */
-    @media (max-width: 900px){
+    @media (max-width:900px){
       .faq{grid-template-columns:1fr}
       .hero{min-height:84vh}
       .events::before{ left:30px }
-      .event{ grid-template-columns: 82px 1fr }
+      .event{ grid-template-columns:82px 1fr }
       .event .icon{ width:72px; height:72px }
     }
 
-    /* Accessibility focus */
+    /* Focus ring */
     a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid var(--copper); outline-offset:3px; border-radius:8px }
   </style>
 </head>
 <body>
 
-  <!-- subtle paper/grain -->
+  <!-- paper/grain texture -->
   <div class="texture" aria-hidden="true"></div>
 
-  <!-- Sticky brand -->
+  <!-- Sticky cursive header -->
   <div class="sticky-brand" id="stickyBrand" aria-hidden="true">
     <nav class="tiny-nav" aria-label="Sections">
       <a href="#schedule">Schedule</a>
@@ -306,14 +220,14 @@
     <div class="tint" aria-hidden="true"></div>
   </header>
 
-  <!-- Intro (below hero) -->
+  <!-- INTRO (below hero) -->
   <section class="intro wrap" aria-label="Intro">
     <div class="kicker">Our Wedding</div>
     <div class="date">June 24, 2026</div>
     <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
   </section>
 
-  <!-- SCHEDULE -->
+  <!-- SCHEDULE (no boxes; icons left) -->
   <section class="section wrap" id="schedule" aria-label="Schedule">
     <div class="events">
       <article class="event reveal">
@@ -364,7 +278,6 @@
         <img loading="lazy" src="images/SecondaryCoupleImage.png" alt="Michael & Mariella" />
         <figcaption>La Dolce Vita</figcaption>
       </figure>
-
       <div class="reveal">
         <h2>Frequently-asked Qs</h2>
 
@@ -406,7 +319,7 @@
     <path d="M0,30 C240,90 480,0 720,50 C960,100 1200,20 1440,70 L1440,100 L0,100 Z" fill="#fff7ef"></path>
   </svg>
 
-  <!-- TRAVEL -->
+  <!-- Travel -->
   <section class="section wrap" id="travel" aria-label="Travel">
     <div class="note reveal">
       <h2>Traveling to the Wedding</h2>
@@ -424,7 +337,7 @@
     </div>
   </section>
 
-  <!-- STAY -->
+  <!-- Stay -->
   <section class="section wrap" id="stay" aria-label="Where to Stay">
     <div class="note reveal">
       <h2>Where to Stay for the Wedding</h2>
@@ -444,76 +357,52 @@
     <div class="smallcaps">Michael &amp; Mariella · June 24, 2026</div>
   </footer>
 
-  <!-- Back to top -->
   <button id="totop" aria-label="Back to top">↑</button>
 
   <script>
-    /* Password gate — code: mm26 (client-side privacy only) */
+    /* Password gate: mm26 */
     (function(){
-      const OK_KEY = "mm-site-ok-v1";
-      const PASS = "mm26";
-      const gate = document.getElementById('pwGate');
-      const input = document.getElementById('pwInput');
-      const btn = document.getElementById('pwBtn');
-      const err = document.getElementById('pwErr');
-
-      function openSite(){ gate.setAttribute('hidden',''); document.body.style.overflow = 'auto'; }
-      function deny(){ err.textContent = "That code didn’t work. Please try again."; }
-
-      if (sessionStorage.getItem(OK_KEY) === "1"){ openSite(); }
-      else { document.body.style.overflow = 'hidden'; }
-
-      function check(){
-        const val = (input.value || "").trim().toLowerCase();
-        if(val === PASS){ sessionStorage.setItem(OK_KEY, "1"); openSite(); }
-        else { deny(); }
-      }
-      btn.addEventListener('click', check);
-      input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') check(); });
-      setTimeout(()=>{ try{ input.focus(); }catch(e){} }, 60);
+      const OK_KEY="mm-site-ok-v1", PASS="mm26";
+      const gate=document.getElementById('pwGate'), input=document.getElementById('pwInput'), btn=document.getElementById('pwBtn'), err=document.getElementById('pwErr');
+      function openSite(){ gate.setAttribute('hidden',''); document.body.style.overflow='auto'; }
+      function deny(){ err.textContent="That code didn’t work. Please try again."; }
+      if(sessionStorage.getItem(OK_KEY)==="1"){ openSite(); } else { document.body.style.overflow='hidden'; }
+      function check(){ const v=(input.value||"").trim().toLowerCase(); if(v===PASS){ sessionStorage.setItem(OK_KEY,"1"); openSite(); } else { deny(); } }
+      btn.addEventListener('click',check); input.addEventListener('keydown',e=>{ if(e.key==='Enter') check(); });
+      setTimeout(()=>{ try{ input.focus(); }catch(_){} },60);
     })();
 
     /* Sticky header toggles after hero */
     (function(){
-      const sticky = document.getElementById('stickyBrand');
-      const hero = document.getElementById('hero');
-      const io = new IntersectionObserver(([entry])=>{
+      const sticky=document.getElementById('stickyBrand');
+      const hero=document.getElementById('hero');
+      const io=new IntersectionObserver(([entry])=>{
         if(entry.isIntersecting){ sticky.classList.remove('show'); }
         else{ sticky.classList.add('show'); }
-      }, {threshold:0.01});
+      },{threshold:0.01});
       io.observe(hero);
     })();
 
     /* Reveal-on-scroll */
     (function(){
-      const els = document.querySelectorAll('.reveal, .event, details, .note');
-      const io = new IntersectionObserver((entries)=>{
-        entries.forEach(e=>{
-          if(e.isIntersecting){
-            e.target.classList.add('revealed');
-            io.unobserve(e.target);
-          }
-        });
-      }, {threshold:.14});
+      const els=document.querySelectorAll('.reveal, .event, details, .note');
+      const io=new IntersectionObserver((es)=>{
+        es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); } });
+      },{threshold:.14});
       els.forEach(el=>io.observe(el));
     })();
 
-    /* Gentle parallax for hero (respects reduced motion) */
+    /* Gentle parallax for hero */
     (function(){
-      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-      if(reduce) return;
-      const set = ()=> document.documentElement.style.setProperty('--scrollY', (window.scrollY*0.18)+'px');
-      set();
-      window.addEventListener('scroll', set, {passive:true});
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const set=()=>document.documentElement.style.setProperty('--scrollY',(window.scrollY*0.18)+'px');
+      set(); window.addEventListener('scroll',set,{passive:true});
     })();
 
-    /* Back to top button */
+    /* Back to top */
     (function(){
       const b=document.getElementById('totop');
-      window.addEventListener('scroll',()=>{ 
-        const show=window.scrollY>600; 
-        b.classList.toggle('show', show);
-      },{passive:true});
+      window.addEventListener('scroll',()=>{ b.classList.toggle('show', window.scrollY>600); },{passive:true});
       b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
     })();
   </script>
