@@ -6,8 +6,18 @@
   <title>Michael & Mariella — June 24, 2026</title>
   <meta name="description" content="Michael & Mariella — Wedding weekend details, RSVP, travel and hotel info for Florence, Italy." />
 
+  <!-- Social share polish (update the og:image URL after publishing if you want) -->
+  <meta property="og:title" content="Michael & Mariella · June 24, 2026">
+  <meta property="og:description" content="Florence, Italy · Ceremony, dinner, travel & hotel details">
+  <meta property="og:image" content="images/WeddingHeroImage.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#B95C33">
+
   <!-- Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800;900&family=Cinzel:wght@500;700&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -18,9 +28,9 @@
       --paper:#fffaf5;
       --paper-2:#fff7ef;
       --line:#e9d8c9;
-      --shadow: 0 10px 30px rgba(0,0,0,.08);
-      --max: 1050px;
-      --scrollY: 0px; /* for parallax */
+      --max: 1060px;
+      --scrollY: 0px;   /* for parallax */
+      --rhythm: 72px;   /* vertical spacing rhythm */
     }
 
     html,body{height:100%}
@@ -35,21 +45,18 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-    /* ---------- Sticky cursive header ---------- */
+    /* ---------- Sticky cursive header with tiny nav ---------- */
     .sticky-brand{
       position:fixed; inset:0 0 auto 0; height:64px;
       display:flex; align-items:center; justify-content:center;
       transform:translateY(-100%); transition:transform .35s ease, backdrop-filter .35s ease, background-color .35s ease;
-      z-index:50;
-      background:rgba(255,250,245,.35);
+      z-index:60;
+      background:rgba(255,250,245,.4);
       backdrop-filter:saturate(120%) blur(6px);
       border-bottom:1px solid rgba(233,216,201,.6);
     }
     .sticky-brand.show{ transform:translateY(0); }
-    .brand-script{
-      font-family:"Great Vibes", cursive;
-      font-size:28px; line-height:1; color:var(--copper); letter-spacing:.02em;
-    }
+    .brand-script{ font-family:"Great Vibes", cursive; font-size:28px; color:var(--copper) }
     .top-cta{
       position:absolute; right:16px;
       padding:10px 14px; border-radius:999px; border:1px solid var(--copper);
@@ -57,6 +64,9 @@
       letter-spacing:.08em; text-transform:uppercase; font-size:.82rem;
     }
     .top-cta:hover{background:var(--copper-dark); border-color:var(--copper-dark)}
+    .tiny-nav{ position:absolute; left:16px; display:flex; gap:14px; font-size:.88rem }
+    .tiny-nav a{ color:inherit; text-decoration:none }
+    .tiny-nav a:hover{ color:var(--copper) }
 
     /* ---------- Password Gate ---------- */
     .gate{
@@ -71,7 +81,7 @@
     .gate-card{
       width:min(560px,92vw);
       background:#fff; border:1px solid var(--line);
-      padding:28px 26px; border-radius:18px; box-shadow:var(--shadow);
+      padding:28px 26px; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.08);
       text-align:center;
     }
     .gate h1{
@@ -104,7 +114,7 @@
     /* ---------- HERO ---------- */
     .hero{
       position:relative;
-      min-height:92vh; /* taller hero */
+      min-height:94vh;                     /* taller hero */
       display:grid; place-items:center;
       overflow:hidden; isolation:isolate;
       background:#000;
@@ -113,7 +123,7 @@
       content:""; position:absolute; inset:0;
       background-image:url('images/WeddingHeroImage.png');
       background-size:cover;
-      background-position:center calc(50% + var(--scrollY)); /* parallax */
+      background-position:center calc(50% + var(--scrollY)); /* gentle parallax */
       filter:grayscale(100%) contrast(1.05) brightness(.8);
       opacity:.9; z-index:-2;
     }
@@ -129,20 +139,21 @@
     }
     .names h1{
       margin:0; line-height:.82; text-align:center;
-      font-family:"Cinzel", serif; font-weight:700;
-      /* copper gradient fill for the artsy vibe */
+      font-family:"Playfair Display", serif; font-weight:900;
       background: linear-gradient(180deg, #c57044 0%, #b95c33 40%, #9e4c29 100%);
       -webkit-background-clip:text; background-clip:text; color:transparent;
-      opacity:.92;
       letter-spacing:.08em; text-transform:uppercase;
-      font-size:clamp(44px, 9.5vw, 160px);
+      font-size:clamp(42px, 9.2vw, 160px);
+      opacity:.92;
     }
+    /* copper “tint” for editorial vibe */
     .hero .tint{
       position:absolute; inset:0; z-index: -1;
       background: radial-gradient(120% 90% at 50% -10%, rgba(185,92,51,.28), transparent 50%),
                   linear-gradient(to bottom, rgba(185,92,51,.18), transparent 30%);
       mix-blend-mode: multiply;
     }
+    /* tiny “twinkles” */
     .names::after{
       content:""; position:absolute; inset:0; pointer-events:none;
       background:
@@ -151,18 +162,13 @@
         radial-gradient(circle at 60% 75%, rgba(255,255,255,.15) 0 2px, transparent 3px);
       animation: twinkle 6s ease-in-out infinite alternate;
     }
-    @keyframes twinkle {
-      from { opacity:.25; transform:translateY(0) }
-      to   { opacity:.6;  transform:translateY(-4px) }
-    }
+    @keyframes twinkle { from {opacity:.25; transform:translateY(0)} to {opacity:.6; transform:translateY(-4px)} }
 
-    /* ---------- Post-hero intro (now strictly below) ---------- */
+    /* ---------- Intro BELOW the hero ---------- */
     .intro{
-      position:relative;
-      margin-top:0; /* no overlap */
-      padding:28px 0 6px;
+      margin-top:0;         /* no overlap */
+      padding: calc(var(--rhythm)/2) 0 8px;
       text-align:center;
-      z-index:1;
     }
     .intro .kicker{
       font-family:"Playfair Display", serif; font-weight:600;
@@ -171,8 +177,8 @@
       text-shadow:0 1px 0 rgba(255,255,255,.25);
       display:inline-block; padding-bottom:8px; position:relative;
     }
-    /* hand-drawn underline */
     .intro .kicker::after{
+      /* hand-drawn underline */
       content:""; position:absolute; left:0; right:0; bottom:0; height:12px;
       background: radial-gradient(60% 220% at 50% 200%, rgba(185,92,51,.65) 0 30%, transparent 31%);
       mask: linear-gradient(#000 0 0) left / 0% 100% no-repeat;
@@ -180,184 +186,154 @@
       animation: draw 1.8s ease .4s forwards; opacity:.8;
     }
     @keyframes draw { to { mask-size:100% 100%; -webkit-mask-size:100% 100%; } }
-
-    .intro .date{
-      margin-top:6px; color:rgba(185,92,51,.9); font-weight:800;
-      letter-spacing:.18em; text-transform:uppercase; font-size:1.05rem;
-      text-shadow:0 1px 0 rgba(255,255,255,.2);
-    }
+    .intro .date{ margin-top:6px; color:rgba(185,92,51,.9); font-weight:800; letter-spacing:.18em; text-transform:uppercase; font-size:1.05rem; text-shadow:0 1px 0 rgba(255,255,255,.2) }
     .cta{
-      display:inline-block; margin-top:16px; margin-bottom:2px;
-      padding:12px 20px; border-radius:999px;
+      display:inline-block; margin-top:16px; padding:12px 20px; border-radius:999px;
       border:1px solid var(--copper); color:#fff; background:var(--copper);
-      text-decoration:none; font-weight:700; letter-spacing:.12em; text-transform:uppercase;
-      font-size:.92rem;
+      text-decoration:none; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.92rem;
     }
     .cta:hover{background:var(--copper-dark); border-color:var(--copper-dark)}
 
-    /* ---------- Events (boxes removed; icons left & larger) ---------- */
-    .section{padding:60px 0}
-    .events{display:grid; gap:28px}
+    /* ---------- Section rhythm ---------- */
+    .section{ padding: var(--rhythm) 0; }
+
+    /* ---------- Events: boxes removed, icons left ---------- */
+    .events{ position:relative; display:grid; gap:28px }
+    /* delicate copper vertical rule */
+    .events::before{
+      content:""; position:absolute; left:40px; top:0; bottom:0;
+      width:1px; background:linear-gradient(#e9d8c9,#d9b9a7,#e9d8c9);
+    }
     .event{
       display:grid; grid-template-columns: 110px 1fr; align-items:center;
-      gap:18px; padding:8px 6px; /* no background, no border—on page background */
+      gap:18px; padding:8px 6px;
       transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease;
     }
     .event.revealed{opacity:1; transform:translateY(0)}
-    .event .icon{
-      width:96px; height:96px; display:block; margin:0 auto;
-      filter:contrast(1.05) saturate(1); opacity:.96;
-    }
+    .event .icon{ width:96px; height:96px; display:block; margin:0 auto; filter:contrast(1.05) saturate(1); opacity:.96; transition:transform .22s ease }
+    .event:hover .icon{ transform: translateY(-3px) scale(1.02) }
     .event h3{
       margin:0 0 4px 0; text-align:left;
       font-family:"Playfair Display", serif; font-weight:900;
-      color:var(--copper); letter-spacing:.16em; text-transform:uppercase;
-      font-size:1.05rem;
+      color:var(--copper); letter-spacing:.16em; text-transform:uppercase; font-size:1.05rem;
     }
     .event p{margin:.1rem 0; text-align:left}
-    .event .time{font-weight:700}
-    .event .addr{opacity:.85}
+    .event .time{ font-weight:700; opacity:.9; margin-bottom:2px }
+    .event .addr{ color:#5a524d; margin-top:0 }
 
-    /* ---------- FAQ (with polaroid) ---------- */
-    .faq{
-      display:grid; grid-template-columns: 1fr 1.05fr; gap:26px; align-items:start;
-    }
-    .faq figure{ margin:0; position:relative; transform: rotate(-1.2deg); }
-    .faq figure img{
-      width:100%; height:auto; border-radius:10px; border:1px solid var(--line);
-      box-shadow: 0 18px 40px rgba(0,0,0,.12); object-fit:cover; object-position:center;
-    }
-    .faq figcaption{
-      text-align:center; font-family:"Great Vibes", cursive; color:var(--copper);
-      font-size:22px; margin-top:10px;
-    }
-    details{
-      border-top:1px solid var(--line);
-      padding:14px 2px;
-      transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease;
-    }
+    /* ---------- FAQ (polaroid) ---------- */
+    .faq{ display:grid; grid-template-columns: 1fr 1.05fr; gap:26px; align-items:start }
+    .faq figure{ margin:0; position:relative; transform: rotate(-1.2deg) }
+    .faq figure img{ width:100%; height:auto; border-radius:10px; border:1px solid var(--line); box-shadow: 0 18px 40px rgba(0,0,0,.12); object-fit:cover }
+    .faq figcaption{ text-align:center; font-family:"Great Vibes", cursive; color:var(--copper); font-size:22px; margin-top:10px }
+    details{ border-top:1px solid var(--line); padding:14px 2px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
     details:first-of-type{border-top:0}
     details.revealed{opacity:1; transform:translateY(0)}
-    summary{
-      list-style:none; cursor:pointer; outline:none;
-      display:flex; justify-content:space-between; align-items:center;
-      font-weight:700; letter-spacing:.05em; color:var(--ink-soft);
-    }
+    summary{ list-style:none; cursor:pointer; outline:none; display:flex; justify-content:space-between; align-items:center; font-weight:700; letter-spacing:.05em; color:var(--ink-soft) }
     summary::after{content:"+"; color:var(--copper); font-weight:900}
     details[open] summary::after{content:"–"}
     details p{margin:.6rem 0 .2rem}
 
-    /* ---------- Travel & Stay ---------- */
-    .note{
-      background:var(--paper-2);
-      border:1px solid var(--line); border-radius:18px; padding:24px;
-      transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease;
-    }
+    /* ---------- Notes (Travel / Stay) ---------- */
+    .note{ background:var(--paper-2); border:1px solid var(--line); border-radius:18px; padding:24px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
     .note.revealed{opacity:1; transform:translateY(0)}
-    h2{
-      font-family:"Playfair Display", serif;
-      font-weight:900; letter-spacing:.18em; text-transform:uppercase;
-      color:var(--copper); font-size:clamp(18px,3.2vw,22px);
-      margin:2px 0 14px; text-align:center;
-    }
+    h2{ font-family:"Playfair Display", serif; font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--copper); font-size:clamp(18px,3.2vw,22px); margin:2px 0 14px; text-align:center }
     .bullets{margin:.4rem 0 0 0}
     .bullets li{margin:.25rem 0}
     .stars{color:var(--copper); letter-spacing:.06em}
 
     /* ---------- Wavy divider ---------- */
-    .wave { display:block; width:100%; height:70px; margin: 24px 0 -6px;
-      opacity:.65; filter: drop-shadow(0 6px 10px rgba(0,0,0,.05)); }
+    .wave{ display:block; width:100%; height:70px; margin: 24px 0 -6px; opacity:.65; filter: drop-shadow(0 6px 10px rgba(0,0,0,.05)) }
 
-    /* ---------- Footer ---------- */
-    footer{ padding:36px 0 54px; text-align:center; color:#7a6f67; font-size:.95rem; }
+    /* ---------- Back to top ---------- */
+    #totop{ position:fixed; right:16px; bottom:16px; padding:10px 12px; border-radius:999px; border:1px solid var(--copper); background:#fff; color:var(--copper); font-weight:700; box-shadow:0 6px 18px rgba(0,0,0,.08); opacity:0; pointer-events:none; transition:.25s }
+    #totop.show{ opacity:1; pointer-events:auto }
 
     /* ---------- Texture overlay ---------- */
-    .texture {
-      position: fixed; inset: 0; pointer-events: none; z-index: 2;
-      opacity: .14; mix-blend-mode: multiply;
-      background-image: radial-gradient(rgba(0,0,0,.06) 0.5px, transparent 0.5px);
-      background-size: 2px 2px;
-    }
+    .texture{ position: fixed; inset: 0; pointer-events: none; z-index: 2; opacity: .14; mix-blend-mode: multiply; background-image: radial-gradient(rgba(0,0,0,.06) 0.5px, transparent 0.5px); background-size: 2px 2px }
 
-    /* ---------- Motion preferences ---------- */
-    @media (prefers-reduced-motion: reduce){
-      *{animation: none !important; transition: none !important}
-      .texture{display:none}
-    }
+    /* ---------- Motion prefs ---------- */
+    @media (prefers-reduced-motion: reduce){ *{animation:none !important; transition:none !important} .texture{display:none} }
 
-    /* ---------- Responsiveness ---------- */
+    /* ---------- Responsive ---------- */
     @media (max-width: 900px){
       .faq{grid-template-columns:1fr}
-      .hero{min-height:80vh}
-      .event{grid-template-columns: 80px 1fr}
-      .event .icon{width:72px; height:72px}
+      .hero{min-height:84vh}
+      .events::before{ left:30px }
+      .event{ grid-template-columns: 82px 1fr }
+      .event .icon{ width:72px; height:72px }
     }
 
     /* Accessibility focus */
-    a:focus-visible, button:focus-visible, summary:focus-visible{
-      outline:2px solid var(--copper); outline-offset:3px; border-radius:8px;
-    }
+    a:focus-visible, button:focus-visible, summary:focus-visible{ outline:2px solid var(--copper); outline-offset:3px; border-radius:8px }
   </style>
 </head>
 <body>
 
-  <!-- Subtle paper/grain texture -->
+  <!-- subtle paper/grain -->
   <div class="texture" aria-hidden="true"></div>
 
-  <!-- Sticky cursive brand -->
+  <!-- Sticky brand -->
   <div class="sticky-brand" id="stickyBrand" aria-hidden="true">
+    <nav class="tiny-nav" aria-label="Sections">
+      <a href="#schedule">Schedule</a>
+      <a href="#faq">FAQ</a>
+      <a href="#travel">Travel</a>
+      <a href="#stay">Stay</a>
+    </nav>
     <div class="brand-script">Michael &amp; Mariella</div>
     <a class="top-cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
   </div>
 
-  <!-- PASSWORD GATE -->
+  <!-- PASSWORD GATE (code: mm26) -->
   <div class="gate" id="pwGate" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
     <div class="gate-card">
       <div class="smallcaps" style="color:var(--copper); font-weight:800;">Private Site</div>
       <h1 id="pwTitle">Michael &amp; Mariella</h1>
-      <p>Please enter the code to view our wedding details.</p>
+      <p id="pwHint">Please enter the code to view our wedding details.</p>
       <div class="field">
-        <input id="pwInput" placeholder="Enter code" aria-label="Password code" autocomplete="off" />
+        <input id="pwInput" placeholder="Enter code" aria-label="Password code" aria-describedby="pwHint" autocomplete="off" />
         <button id="pwBtn" aria-label="Unlock site">Enter</button>
       </div>
       <div class="err" id="pwErr" role="status" aria-live="polite"></div>
       <p style="margin-top:12px; font-size:.9rem; opacity:.75">Hint: lower-case letters &amp; numbers.</p>
     </div>
   </div>
-  <!-- /PASSWORD GATE -->
 
   <!-- HERO -->
   <header class="hero" id="hero">
-    <div class="names"><h1>Michael &amp; Mariella</h1></div>
+    <div class="names"><h1>MICHAEL &amp; MARIELLA</h1></div>
     <div class="tint" aria-hidden="true"></div>
   </header>
 
-  <!-- Intro below the hero -->
-  <section class="intro wrap">
+  <!-- Intro (below hero) -->
+  <section class="intro wrap" aria-label="Intro">
     <div class="kicker">Our Wedding</div>
     <div class="date">June 24, 2026</div>
     <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
   </section>
 
-  <!-- EVENTS (no boxes; icons left & larger) -->
-  <section class="section wrap">
+  <!-- SCHEDULE -->
+  <section class="section wrap" id="schedule" aria-label="Schedule">
     <div class="events">
       <article class="event reveal">
         <img loading="lazy" class="icon" src="images/WelcomeDinnerIcon.png" alt="Welcome dinner icon" />
-        <div class="text">
+        <div>
           <h3>Welcome Dinner</h3>
-          <p class="time">Tuesday, June 23rd, 2026 &middot; 7:30 PM</p>
-          <p class="addr">Palazzo Portinari Salviati — Florence, Italy</p>
+          <p class="time">Tuesday, June 23rd, 2026 · 7:30 PM</p>
+          <p class="addr">
+            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Palazzo+Portinari+Salviati">Palazzo Portinari Salviati</a> — Florence, Italy
+          </p>
         </div>
       </article>
 
       <article class="event reveal">
         <img loading="lazy" class="icon" src="images/WeddingIcon.png" alt="Ceremony icon" />
-        <div class="text">
+        <div>
           <h3>The Ceremony</h3>
-          <p class="time">Wednesday, June 24th, 2026 &middot; 4:00 PM</p>
+          <p class="time">Wednesday, June 24th, 2026 · 4:00 PM</p>
           <p class="addr">
-            Basilica di Santa Maria Novella<br />
+            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Basilica+di+Santa+Maria+Novella">Basilica di Santa Maria Novella</a><br/>
             Piazza di Santa Maria Novella, 18 — 50123 Firenze FI, Italy
           </p>
         </div>
@@ -365,27 +341,30 @@
 
       <article class="event reveal">
         <img loading="lazy" class="icon" src="images/ReceptionIcon.png" alt="Reception icon" />
-        <div class="text">
+        <div>
           <h3>Reception</h3>
-          <p class="time">Wednesday, June 24th, 2026 &middot; 6:30 PM</p>
-          <p class="addr">Villa Cetinale — Str. di Cetinale, 9 — 53018 Sovicille SI, Italy</p>
+          <p class="time">Wednesday, June 24th, 2026 · 6:30 PM</p>
+          <p class="addr">
+            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Villa+Cetinale">Villa Cetinale</a> — Str. di Cetinale, 9 — 53018 Sovicille SI, Italy
+          </p>
         </div>
       </article>
     </div>
   </section>
 
-  <!-- Wavy divider before FAQ -->
+  <!-- Divider -->
   <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0,30 C240,90 480,0 720,50 C960,100 1200,20 1440,70 L1440,100 L0,100 Z" fill="#fff7ef"></path>
   </svg>
 
-  <!-- FAQ with polaroid image -->
-  <section class="section wrap">
+  <!-- FAQ -->
+  <section class="section wrap" id="faq" aria-label="FAQ">
     <div class="faq">
       <figure class="reveal">
         <img loading="lazy" src="images/SecondaryCoupleImage.png" alt="Michael & Mariella" />
         <figcaption>La Dolce Vita</figcaption>
       </figure>
+
       <div class="reveal">
         <h2>Frequently-asked Qs</h2>
 
@@ -422,13 +401,13 @@
     </div>
   </section>
 
-  <!-- Wavy divider before Stay -->
+  <!-- Divider -->
   <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0,30 C240,90 480,0 720,50 C960,100 1200,20 1440,70 L1440,100 L0,100 Z" fill="#fff7ef"></path>
   </svg>
 
   <!-- TRAVEL -->
-  <section class="section wrap">
+  <section class="section wrap" id="travel" aria-label="Travel">
     <div class="note reveal">
       <h2>Traveling to the Wedding</h2>
       <p class="center">We recommend booking flights directly to Florence (FLR) whenever possible—it’s the closest airport to the ceremony, rehearsal dinner, and our recommended hotels.</p>
@@ -446,7 +425,7 @@
   </section>
 
   <!-- STAY -->
-  <section class="section wrap">
+  <section class="section wrap" id="stay" aria-label="Where to Stay">
     <div class="note reveal">
       <h2>Where to Stay for the Wedding</h2>
       <p class="center">We suggest staying in Florence for the ceremony and rehearsal dinner. We don’t have group bookings, but we highly recommend reserving early since June is peak season.</p>
@@ -462,15 +441,17 @@
 
   <footer class="wrap">
     <div class="hr"></div>
-    <div class="smallcaps">Michael &amp; Mariella &middot; June 24, 2026</div>
+    <div class="smallcaps">Michael &amp; Mariella · June 24, 2026</div>
   </footer>
 
+  <!-- Back to top -->
+  <button id="totop" aria-label="Back to top">↑</button>
+
   <script>
-    /* Password gate — code: mm26 (case-insensitive) */
+    /* Password gate — code: mm26 (client-side privacy only) */
     (function(){
       const OK_KEY = "mm-site-ok-v1";
       const PASS = "mm26";
-
       const gate = document.getElementById('pwGate');
       const input = document.getElementById('pwInput');
       const btn = document.getElementById('pwBtn');
@@ -492,7 +473,7 @@
       setTimeout(()=>{ try{ input.focus(); }catch(e){} }, 60);
     })();
 
-    /* Sticky cursive header after hero */
+    /* Sticky header toggles after hero */
     (function(){
       const sticky = document.getElementById('stickyBrand');
       const hero = document.getElementById('hero');
@@ -524,6 +505,16 @@
       const set = ()=> document.documentElement.style.setProperty('--scrollY', (window.scrollY*0.18)+'px');
       set();
       window.addEventListener('scroll', set, {passive:true});
+    })();
+
+    /* Back to top button */
+    (function(){
+      const b=document.getElementById('totop');
+      window.addEventListener('scroll',()=>{ 
+        const show=window.scrollY>600; 
+        b.classList.toggle('show', show);
+      },{passive:true});
+      b.addEventListener('click',()=>window.scrollTo({top:0,behavior:'smooth'}));
     })();
   </script>
 </body>
