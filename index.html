@@ -20,6 +20,7 @@
       --line:#e9d8c9;
       --shadow: 0 10px 30px rgba(0,0,0,.08);
       --max: 1050px;
+      --scrollY: 0px; /* for parallax */
     }
 
     html,body{height:100%}
@@ -34,7 +35,7 @@
       -moz-osx-font-smoothing:grayscale;
     }
 
-    /* ---------- Sticky cursive header (appears after scroll) ---------- */
+    /* ---------- Sticky cursive header ---------- */
     .sticky-brand{
       position:fixed; inset:0 0 auto 0; height:64px;
       display:flex; align-items:center; justify-content:center;
@@ -103,7 +104,7 @@
     /* ---------- HERO ---------- */
     .hero{
       position:relative;
-      min-height:78vh;
+      min-height:92vh; /* taller hero */
       display:grid; place-items:center;
       overflow:hidden; isolation:isolate;
       background:#000;
@@ -111,7 +112,8 @@
     .hero::before{
       content:""; position:absolute; inset:0;
       background-image:url('images/WeddingHeroImage.png');
-      background-size:cover; background-position:center;
+      background-size:cover;
+      background-position:center calc(50% + var(--scrollY)); /* parallax */
       filter:grayscale(100%) contrast(1.05) brightness(.8);
       opacity:.9; z-index:-2;
     }
@@ -128,16 +130,37 @@
     .names h1{
       margin:0; line-height:.82; text-align:center;
       font-family:"Cinzel", serif; font-weight:700;
-      color:var(--copper); mix-blend-mode:screen;
+      /* copper gradient fill for the artsy vibe */
+      background: linear-gradient(180deg, #c57044 0%, #b95c33 40%, #9e4c29 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      opacity:.92;
       letter-spacing:.08em; text-transform:uppercase;
       font-size:clamp(44px, 9.5vw, 160px);
     }
+    .hero .tint{
+      position:absolute; inset:0; z-index: -1;
+      background: radial-gradient(120% 90% at 50% -10%, rgba(185,92,51,.28), transparent 50%),
+                  linear-gradient(to bottom, rgba(185,92,51,.18), transparent 30%);
+      mix-blend-mode: multiply;
+    }
+    .names::after{
+      content:""; position:absolute; inset:0; pointer-events:none;
+      background:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,.18) 0 2px, transparent 3px),
+        radial-gradient(circle at 78% 40%, rgba(255,255,255,.12) 0 2px, transparent 3px),
+        radial-gradient(circle at 60% 75%, rgba(255,255,255,.15) 0 2px, transparent 3px);
+      animation: twinkle 6s ease-in-out infinite alternate;
+    }
+    @keyframes twinkle {
+      from { opacity:.25; transform:translateY(0) }
+      to   { opacity:.6;  transform:translateY(-4px) }
+    }
 
-    /* ---------- Post-hero intro (no box) ---------- */
+    /* ---------- Post-hero intro (now strictly below) ---------- */
     .intro{
       position:relative;
-      margin-top:-90px; /* gentle overlap onto the hero image */
-      padding:24px 0 8px;
+      margin-top:0; /* no overlap */
+      padding:28px 0 6px;
       text-align:center;
       z-index:1;
     }
@@ -146,7 +169,18 @@
       letter-spacing:.25em; text-transform:uppercase;
       color:rgba(43,43,43,.8);
       text-shadow:0 1px 0 rgba(255,255,255,.25);
+      display:inline-block; padding-bottom:8px; position:relative;
     }
+    /* hand-drawn underline */
+    .intro .kicker::after{
+      content:""; position:absolute; left:0; right:0; bottom:0; height:12px;
+      background: radial-gradient(60% 220% at 50% 200%, rgba(185,92,51,.65) 0 30%, transparent 31%);
+      mask: linear-gradient(#000 0 0) left / 0% 100% no-repeat;
+      -webkit-mask: linear-gradient(#000 0 0) left / 0% 100% no-repeat;
+      animation: draw 1.8s ease .4s forwards; opacity:.8;
+    }
+    @keyframes draw { to { mask-size:100% 100%; -webkit-mask-size:100% 100%; } }
+
     .intro .date{
       margin-top:6px; color:rgba(185,92,51,.9); font-weight:800;
       letter-spacing:.18em; text-transform:uppercase; font-size:1.05rem;
@@ -161,38 +195,41 @@
     }
     .cta:hover{background:var(--copper-dark); border-color:var(--copper-dark)}
 
-    /* ---------- Schedule (icon column removed) ---------- */
+    /* ---------- Events (boxes removed; icons left & larger) ---------- */
     .section{padding:60px 0}
-    .events{
-      display:grid; gap:18px;
-      grid-template-columns:1fr; /* single column for a refined look */
-    }
-    .card{
-      background:#fff; border:1px solid var(--line); border-radius:18px;
-      box-shadow:var(--shadow); padding:26px;
+    .events{display:grid; gap:28px}
+    .event{
+      display:grid; grid-template-columns: 110px 1fr; align-items:center;
+      gap:18px; padding:8px 6px; /* no background, no border—on page background */
       transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease;
     }
-    .card.revealed{opacity:1; transform:translateY(0)}
-    .icon{
-      width:84px; height:84px; margin:0 auto 10px; display:block; opacity:.96;
+    .event.revealed{opacity:1; transform:translateY(0)}
+    .event .icon{
+      width:96px; height:96px; display:block; margin:0 auto;
+      filter:contrast(1.05) saturate(1); opacity:.96;
     }
     .event h3{
-      margin:.2rem 0 .25rem;
+      margin:0 0 4px 0; text-align:left;
       font-family:"Playfair Display", serif; font-weight:900;
       color:var(--copper); letter-spacing:.16em; text-transform:uppercase;
-      text-align:center; font-size:1rem;
+      font-size:1.05rem;
     }
-    .event p{margin:.1rem 0; text-align:center}
+    .event p{margin:.1rem 0; text-align:left}
     .event .time{font-weight:700}
     .event .addr{opacity:.85}
 
-    /* ---------- FAQ ---------- */
+    /* ---------- FAQ (with polaroid) ---------- */
     .faq{
       display:grid; grid-template-columns: 1fr 1.05fr; gap:26px; align-items:start;
     }
-    .faq img{
-      width:100%; height:auto; border-radius:18px; border:1px solid var(--line);
-      box-shadow:var(--shadow); object-fit:cover; object-position:center;
+    .faq figure{ margin:0; position:relative; transform: rotate(-1.2deg); }
+    .faq figure img{
+      width:100%; height:auto; border-radius:10px; border:1px solid var(--line);
+      box-shadow: 0 18px 40px rgba(0,0,0,.12); object-fit:cover; object-position:center;
+    }
+    .faq figcaption{
+      text-align:center; font-family:"Great Vibes", cursive; color:var(--copper);
+      font-size:22px; margin-top:10px;
     }
     details{
       border-top:1px solid var(--line);
@@ -227,23 +264,45 @@
     .bullets li{margin:.25rem 0}
     .stars{color:var(--copper); letter-spacing:.06em}
 
+    /* ---------- Wavy divider ---------- */
+    .wave { display:block; width:100%; height:70px; margin: 24px 0 -6px;
+      opacity:.65; filter: drop-shadow(0 6px 10px rgba(0,0,0,.05)); }
+
     /* ---------- Footer ---------- */
     footer{ padding:36px 0 54px; text-align:center; color:#7a6f67; font-size:.95rem; }
+
+    /* ---------- Texture overlay ---------- */
+    .texture {
+      position: fixed; inset: 0; pointer-events: none; z-index: 2;
+      opacity: .14; mix-blend-mode: multiply;
+      background-image: radial-gradient(rgba(0,0,0,.06) 0.5px, transparent 0.5px);
+      background-size: 2px 2px;
+    }
 
     /* ---------- Motion preferences ---------- */
     @media (prefers-reduced-motion: reduce){
       *{animation: none !important; transition: none !important}
+      .texture{display:none}
     }
 
     /* ---------- Responsiveness ---------- */
     @media (max-width: 900px){
       .faq{grid-template-columns:1fr}
-      .hero{min-height:72vh}
-      .intro{margin-top:-70px}
+      .hero{min-height:80vh}
+      .event{grid-template-columns: 80px 1fr}
+      .event .icon{width:72px; height:72px}
+    }
+
+    /* Accessibility focus */
+    a:focus-visible, button:focus-visible, summary:focus-visible{
+      outline:2px solid var(--copper); outline-offset:3px; border-radius:8px;
     }
   </style>
 </head>
 <body>
+
+  <!-- Subtle paper/grain texture -->
+  <div class="texture" aria-hidden="true"></div>
 
   <!-- Sticky cursive brand -->
   <div class="sticky-brand" id="stickyBrand" aria-hidden="true">
@@ -270,49 +329,64 @@
   <!-- HERO -->
   <header class="hero" id="hero">
     <div class="names"><h1>Michael &amp; Mariella</h1></div>
+    <div class="tint" aria-hidden="true"></div>
   </header>
 
-  <!-- Post-hero intro (no box; translucent text; slight overlap) -->
+  <!-- Intro below the hero -->
   <section class="intro wrap">
     <div class="kicker">Our Wedding</div>
     <div class="date">June 24, 2026</div>
     <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
   </section>
 
-  <!-- SCHEDULE (left icon column removed) -->
+  <!-- EVENTS (no boxes; icons left & larger) -->
   <section class="section wrap">
     <div class="events">
-      <article class="card event reveal">
-        <img loading="lazy" class="icon" src="images/WelcomeDinnerIcon.png" alt="" />
-        <h3>Welcome Dinner</h3>
-        <p class="time">Tuesday, June 23rd, 2026 &middot; 7:30 PM</p>
-        <p class="addr">Palazzo Portinari Salviati — Florence, Italy</p>
+      <article class="event reveal">
+        <img loading="lazy" class="icon" src="images/WelcomeDinnerIcon.png" alt="Welcome dinner icon" />
+        <div class="text">
+          <h3>Welcome Dinner</h3>
+          <p class="time">Tuesday, June 23rd, 2026 &middot; 7:30 PM</p>
+          <p class="addr">Palazzo Portinari Salviati — Florence, Italy</p>
+        </div>
       </article>
 
-      <article class="card event reveal">
-        <img loading="lazy" class="icon" src="images/WeddingIcon.png" alt="" />
-        <h3>The Ceremony</h3>
-        <p class="time">Wednesday, June 24th, 2026 &middot; 4:00 PM</p>
-        <p class="addr">
-          Basilica di Santa Maria Novella<br />
-          Piazza di Santa Maria Novella, 18 — 50123 Firenze FI, Italy
-        </p>
+      <article class="event reveal">
+        <img loading="lazy" class="icon" src="images/WeddingIcon.png" alt="Ceremony icon" />
+        <div class="text">
+          <h3>The Ceremony</h3>
+          <p class="time">Wednesday, June 24th, 2026 &middot; 4:00 PM</p>
+          <p class="addr">
+            Basilica di Santa Maria Novella<br />
+            Piazza di Santa Maria Novella, 18 — 50123 Firenze FI, Italy
+          </p>
+        </div>
       </article>
 
-      <article class="card event reveal">
-        <img loading="lazy" class="icon" src="images/ReceptionIcon.png" alt="" />
-        <h3>Reception</h3>
-        <p class="time">Wednesday, June 24th, 2026 &middot; 6:30 PM</p>
-        <p class="addr">Villa Cetinale — Str. di Cetinale, 9 — 53018 Sovicille SI, Italy</p>
+      <article class="event reveal">
+        <img loading="lazy" class="icon" src="images/ReceptionIcon.png" alt="Reception icon" />
+        <div class="text">
+          <h3>Reception</h3>
+          <p class="time">Wednesday, June 24th, 2026 &middot; 6:30 PM</p>
+          <p class="addr">Villa Cetinale — Str. di Cetinale, 9 — 53018 Sovicille SI, Italy</p>
+        </div>
       </article>
     </div>
   </section>
 
-  <!-- FAQ -->
+  <!-- Wavy divider before FAQ -->
+  <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,30 C240,90 480,0 720,50 C960,100 1200,20 1440,70 L1440,100 L0,100 Z" fill="#fff7ef"></path>
+  </svg>
+
+  <!-- FAQ with polaroid image -->
   <section class="section wrap">
     <div class="faq">
-      <img loading="lazy" src="images/SecondaryCoupleImage.png" alt="Michael & Mariella" class="reveal" />
-      <div class="card reveal">
+      <figure class="reveal">
+        <img loading="lazy" src="images/SecondaryCoupleImage.png" alt="Michael & Mariella" />
+        <figcaption>La Dolce Vita</figcaption>
+      </figure>
+      <div class="reveal">
         <h2>Frequently-asked Qs</h2>
 
         <details class="reveal">
@@ -347,6 +421,11 @@
       </div>
     </div>
   </section>
+
+  <!-- Wavy divider before Stay -->
+  <svg class="wave" viewBox="0 0 1440 100" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0,30 C240,90 480,0 720,50 C960,100 1200,20 1440,70 L1440,100 L0,100 Z" fill="#fff7ef"></path>
+  </svg>
 
   <!-- TRAVEL -->
   <section class="section wrap">
@@ -387,8 +466,7 @@
   </footer>
 
   <script>
-    /* Simple client-side password gate (for static hosting)
-       Code: mm26 (case-insensitive). Stores a flag in sessionStorage. */
+    /* Password gate — code: mm26 (case-insensitive) */
     (function(){
       const OK_KEY = "mm-site-ok-v1";
       const PASS = "mm26";
@@ -398,10 +476,7 @@
       const btn = document.getElementById('pwBtn');
       const err = document.getElementById('pwErr');
 
-      function openSite(){
-        gate.setAttribute('hidden','');
-        document.body.style.overflow = 'auto';
-      }
+      function openSite(){ gate.setAttribute('hidden',''); document.body.style.overflow = 'auto'; }
       function deny(){ err.textContent = "That code didn’t work. Please try again."; }
 
       if (sessionStorage.getItem(OK_KEY) === "1"){ openSite(); }
@@ -428,9 +503,9 @@
       io.observe(hero);
     })();
 
-    /* Simple reveal-on-scroll for cards/details/images */
+    /* Reveal-on-scroll */
     (function(){
-      const els = document.querySelectorAll('.reveal, .card, details, .note');
+      const els = document.querySelectorAll('.reveal, .event, details, .note');
       const io = new IntersectionObserver((entries)=>{
         entries.forEach(e=>{
           if(e.isIntersecting){
@@ -440,6 +515,15 @@
         });
       }, {threshold:.14});
       els.forEach(el=>io.observe(el));
+    })();
+
+    /* Gentle parallax for hero (respects reduced motion) */
+    (function(){
+      const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if(reduce) return;
+      const set = ()=> document.documentElement.style.setProperty('--scrollY', (window.scrollY*0.18)+'px');
+      set();
+      window.addEventListener('scroll', set, {passive:true});
     })();
   </script>
 </body>
