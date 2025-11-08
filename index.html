@@ -31,13 +31,18 @@
     a:hover{color:var(--copper-dark); text-decoration:underline}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
 
-    /* === Header Nav (sticky) === */
+    /* === Header Nav (sticky & reveal-on-scroll) === */
     .site-top{
       position:sticky; top:0; z-index:100;
       backdrop-filter:blur(8px);
       background:rgba(255,250,245,.85);
       border-bottom:1px solid rgba(233,216,201,.7);
+      transition:transform .35s ease, opacity .35s ease;
     }
+    /* Hidden until user scrolls */
+    .site-top.is-hidden{ transform:translateY(-100%); opacity:0; pointer-events:none }
+    .site-top.is-visible{ transform:translateY(0); opacity:1; pointer-events:auto }
+
     .topbar{
       display:flex; align-items:center; justify-content:space-between;
       min-height:70px; gap:18px;
@@ -47,14 +52,10 @@
       line-height:1; padding:10px 0;
     }
 
-    /* Menu (one line on desktop) */
+    /* Menu (single line on desktop) */
     .menu{
-      display:flex;
-      flex-wrap:nowrap;           /* force single line on desktop */
-      gap:38px;                   /* slightly tighter */
-      align-items:center;
-      font-family:"Playfair Display SC", serif;
-      white-space:nowrap;         /* prevent wrap on items */
+      display:flex; flex-wrap:nowrap; gap:38px; align-items:center;
+      font-family:"Playfair Display SC", serif; white-space:nowrap;
     }
     .menu a{
       color:var(--ink-soft);
@@ -101,8 +102,11 @@
     .names h1{
       font-family:"Great Vibes", cursive;
       font-size:clamp(72px, 11vw, 190px);
-      color:#fff; text-shadow:0 4px 16px rgba(0,0,0,.35);
+      /* Warm copper tone with slight translucency over the photo */
+      color:rgba(185,92,51,.88);
+      text-shadow: 0 6px 28px rgba(0,0,0,.45);
       font-weight:400; letter-spacing:.02em; margin:0; text-align:center;
+      mix-blend-mode:screen; /* keeps it luminous on darker areas */
     }
 
     /* Intro below hero */
@@ -141,8 +145,8 @@
 </head>
 <body>
 
-  <!-- HEADER / NAV -->
-  <header class="site-top">
+  <!-- HEADER / NAV (hidden initially) -->
+  <header class="site-top is-hidden" id="siteTop">
     <div class="topbar wrap">
       <a class="brand" href="index.html">Michael &amp; Mariella</a>
 
@@ -207,12 +211,35 @@
 
   <script>
     (function(){
+      // Mobile menu toggle
       const burger = document.getElementById('burger');
       const menu = document.getElementById('menu');
-      burger.addEventListener('click', () => {
-        const open = menu.classList.toggle('open');
-        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
-      });
+      if (burger) {
+        burger.addEventListener('click', () => {
+          const open = menu.classList.toggle('open');
+          burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+        });
+      }
+
+      // Reveal header after user scrolls down a bit
+      const topBar = document.getElementById('siteTop');
+      const revealOffset = 120; // px from top before header appears
+      let shown = false;
+
+      function onScroll(){
+        if (window.scrollY > revealOffset && !shown){
+          shown = true;
+          topBar.classList.remove('is-hidden');
+          topBar.classList.add('is-visible');
+        } else if (window.scrollY <= revealOffset && shown){
+          shown = false;
+          topBar.classList.remove('is-visible');
+          topBar.classList.add('is-hidden');
+        }
+      }
+      // Run once on load and on scroll
+      onScroll();
+      window.addEventListener('scroll', onScroll, {passive:true});
     })();
   </script>
 </body>
