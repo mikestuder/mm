@@ -20,7 +20,6 @@
       --max:1100px;
     }
 
-    /* Base */
     *{box-sizing:border-box}
     html,body{height:100%}
     body{
@@ -48,14 +47,18 @@
       line-height:1; padding:10px 0;
     }
 
-    /* Menu */
+    /* Menu (one line on desktop) */
     .menu{
-      display:flex; gap:min(6vw,46px); align-items:center; flex-wrap:wrap;
+      display:flex;
+      flex-wrap:nowrap;           /* force single line on desktop */
+      gap:38px;                   /* slightly tighter */
+      align-items:center;
       font-family:"Playfair Display SC", serif;
+      white-space:nowrap;         /* prevent wrap on items */
     }
     .menu a{
       color:var(--ink-soft);
-      letter-spacing:.02em; font-size:20px; white-space:nowrap;
+      letter-spacing:.02em; font-size:20px;
     }
     .menu a:hover{ color:var(--copper); text-decoration:none }
     .menu a.active{ color:var(--copper); position:relative }
@@ -63,7 +66,7 @@
       content:""; position:absolute; left:0; right:0; bottom:-10px; height:2px; background:var(--copper);
     }
 
-    /* Burger */
+    /* Burger for mobile */
     .burger{
       display:none; width:36px; height:36px; border:1px solid var(--line);
       border-radius:8px; background:#fff; align-items:center; justify-content:center;
@@ -75,7 +78,7 @@
 
     @media (max-width:980px){
       .burger{display:flex}
-      .menu{ display:none; flex-direction:column; align-items:flex-start; gap:16px; padding:14px 0 }
+      .menu{ display:none; flex-direction:column; align-items:flex-start; gap:16px; padding:14px 0; white-space:normal }
       .menu.open{ display:flex }
       .menu a{ font-size:19px }
       .topbar{ min-height:66px }
@@ -117,7 +120,7 @@
       letter-spacing:.12em; font-weight:600 }
     .cta:hover{ background:var(--copper-dark) }
 
-    /* Events (icon left on desktop) */
+    /* Events */
     .events{ max-width:var(--max); margin:90px auto 40px; padding:0 22px; display:grid; gap:64px }
     .event{ display:grid; grid-template-columns:220px 1fr; align-items:center; gap:28px }
     .event img{ width:200px; height:auto; margin-left:auto; display:block; filter:contrast(1.05) saturate(1.05) }
@@ -152,8 +155,6 @@
         <a href="travel-hotels.html">Travel &amp; Hotels</a>
         <a href="itinerary.html">Itinerary</a>
         <a href="guest-information.html">Guest Information</a>
-        <a href="must-sees.html">Must Sees and Dos</a>
-        <a href="registry.html">Registry</a>
       </nav>
     </div>
   </header>
@@ -170,7 +171,7 @@
     <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
   </section>
 
-  <!-- SCHEDULE (kept short here; expand as you wish) -->
+  <!-- SCHEDULE -->
   <section class="events">
     <article class="event">
       <img src="images/WelcomeDinnerIcon.png" alt="Welcome Dinner">
@@ -205,7 +206,6 @@
   </footer>
 
   <script>
-    // Mobile menu toggle
     (function(){
       const burger = document.getElementById('burger');
       const menu = document.getElementById('menu');
