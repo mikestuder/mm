@@ -5,337 +5,214 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Michael & Mariella — June 24, 2026</title>
   <meta name="description" content="Michael & Mariella — Wedding weekend details, RSVP, travel and hotel info for Florence, Italy." />
-
-  <!-- Social -->
-  <meta property="og:title" content="Michael & Mariella · June 24, 2026">
-  <meta property="og:description" content="Florence, Italy · Ceremony, dinner, travel & hotel details">
-  <meta property="og:image" content="images/WeddingHeroImage.png">
-  <meta property="og:type" content="website">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="theme-color" content="#B95C33">
+  <meta name="theme-color" content="#B95C33" />
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display+SC:wght@400;700&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
 
   <style>
     :root{
       --copper:#B95C33; --copper-dark:#9e4c29;
-      --ink:#2a2a2a; --ink-soft:#3b312c;
-      --paper:#fffaf5; --paper-2:#fff7ef; --line:#e9d8c9;
-      --max: 1060px; --scrollY: 0px; --rhythm: 72px;
+      --ink:#2A2A2A; --ink-soft:#3f4650;
+      --paper:#fffaf5; --line:#e9d8c9;
+      --max:1100px;
     }
+
+    /* Base */
+    *{box-sizing:border-box}
     html,body{height:100%}
     body{
-      margin:0; color:var(--ink); background:var(--paper);
-      font-family:"Libre Baskerville", Georgia, serif; line-height:1.6;
-      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+      margin:0; background:var(--paper); color:var(--ink);
+      font-family:"Cormorant Garamond", serif; font-size:18px; line-height:1.65;
+      -webkit-font-smoothing:antialiased;
     }
-
-    /* Sticky brand */
-    .sticky-brand{
-      position:fixed; inset:0 0 auto 0; height:64px; z-index:60;
-      display:flex; align-items:center; justify-content:center;
-      transform:translateY(-100%); transition:transform .35s ease, backdrop-filter .35s ease, background-color .35s ease;
-      background:rgba(255,250,245,.5); backdrop-filter:saturate(120%) blur(6px);
-      border-bottom:1px solid rgba(233,216,201,.6);
-    }
-    .sticky-brand.show{ transform:translateY(0); }
-    .brand-script{ font-family:"Great Vibes", cursive; font-size:28px; color:var(--copper) }
-
-    /* Password gate */
-    .gate{ position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center;
-      background: radial-gradient(80% 60% at 50% 20%, rgba(185,92,51,.12), rgba(255,250,245,.85) 60%), var(--paper);
-    }
-    .gate[hidden]{display:none}
-    .gate-card{ width:min(560px,92vw); background:#fff; border:1px solid var(--line); padding:28px 26px; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.08); text-align:center }
-    .gate h1{ margin:.2rem 0 1rem; font-family:"Playfair Display", serif; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color:var(--copper); font-size:1.05rem }
-    .gate .field{ display:flex; gap:12px; justify-content:center; margin-top:.4rem }
-    .gate input{ font:700 1rem/1 "Libre Baskerville", serif; padding:12px 14px; border:1px solid var(--line); border-radius:10px; width:180px; text-align:center; letter-spacing:.16em; text-transform:uppercase; background:#fffdf9 }
-    .gate button{ padding:12px 16px; border-radius:10px; border:1px solid var(--copper); background:var(--copper); color:#fff; font-weight:700; cursor:pointer; letter-spacing:.08em; text-transform:uppercase }
-    .gate button:hover{ background:var(--copper-dark) }
-    .gate .err{ color:#a12626; font-size:.9rem; min-height:1.2em }
-
-    /* Utilities */
+    a{color:var(--copper); text-decoration:none}
+    a:hover{color:var(--copper-dark); text-decoration:underline}
     .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
-    .center{text-align:center}
-    .hr{height:1px; background:var(--line); margin:24px 0}
-    .smallcaps{letter-spacing:.2em; text-transform:uppercase}
-    .section{ padding:56px 0 }
 
-    /* HERO */
+    /* === Header Nav (sticky) === */
+    .site-top{
+      position:sticky; top:0; z-index:100;
+      backdrop-filter:blur(8px);
+      background:rgba(255,250,245,.85);
+      border-bottom:1px solid rgba(233,216,201,.7);
+    }
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between;
+      min-height:70px; gap:18px;
+    }
+    .brand{
+      font-family:"Great Vibes", cursive; font-size:34px; color:var(--copper);
+      line-height:1; padding:10px 0;
+    }
+
+    /* Menu */
+    .menu{
+      display:flex; gap:min(6vw,46px); align-items:center; flex-wrap:wrap;
+      font-family:"Playfair Display SC", serif;
+    }
+    .menu a{
+      color:var(--ink-soft);
+      letter-spacing:.02em; font-size:20px; white-space:nowrap;
+    }
+    .menu a:hover{ color:var(--copper); text-decoration:none }
+    .menu a.active{ color:var(--copper); position:relative }
+    .menu a.active::after{
+      content:""; position:absolute; left:0; right:0; bottom:-10px; height:2px; background:var(--copper);
+    }
+
+    /* Burger */
+    .burger{
+      display:none; width:36px; height:36px; border:1px solid var(--line);
+      border-radius:8px; background:#fff; align-items:center; justify-content:center;
+      cursor:pointer;
+    }
+    .burger span{ width:18px; height:2px; background:var(--ink-soft); position:relative; display:block }
+    .burger span::before,.burger span::after{content:""; position:absolute; left:0; right:0; height:2px; background:var(--ink-soft)}
+    .burger span::before{ top:-6px } .burger span::after{ bottom:-6px }
+
+    @media (max-width:980px){
+      .burger{display:flex}
+      .menu{ display:none; flex-direction:column; align-items:flex-start; gap:16px; padding:14px 0 }
+      .menu.open{ display:flex }
+      .menu a{ font-size:19px }
+      .topbar{ min-height:66px }
+    }
+
+    /* === Hero === */
     .hero{
       position:relative; min-height:94vh; display:grid; place-items:center;
-      overflow:hidden; isolation:isolate; background:#000;
+      background:#000; overflow:hidden;
     }
     .hero::before{
       content:""; position:absolute; inset:0;
-      background-image:url('images/WeddingHeroImage.png'); background-size:cover;
-      background-position:center calc(50% + var(--scrollY));
-      filter:grayscale(100%) contrast(1.05) brightness(.8); opacity:.9; z-index:-2;
+      background:url('images/WeddingHeroImage.png') center/cover no-repeat;
+      filter:grayscale(100%) brightness(.8); opacity:.9;
     }
-    .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.0) 60%); z-index:-1 }
-    .names{ position:absolute; inset:0; display:grid; place-items:center; pointer-events:none }
+    .hero::after{
+      content:""; position:absolute; inset:0;
+      background:linear-gradient(to top, rgba(0,0,0,.40), rgba(0,0,0,0) 60%);
+    }
     .names h1{
-      margin:0; line-height:.82; text-align:center; font-family:"Playfair Display", serif; font-weight:900;
-      background: linear-gradient(180deg, #c57044 0%, #b95c33 40%, #9e4c29 100%);
-      -webkit-background-clip:text; background-clip:text; color:transparent;
-      letter-spacing:.08em; text-transform:uppercase; font-size:clamp(42px, 9.2vw, 160px);
-      text-shadow: 0 2px 12px rgba(0,0,0,.28), 0 1px 0 rgba(255,255,255,.08);
+      font-family:"Great Vibes", cursive;
+      font-size:clamp(72px, 11vw, 190px);
+      color:#fff; text-shadow:0 4px 16px rgba(0,0,0,.35);
+      font-weight:400; letter-spacing:.02em; margin:0; text-align:center;
     }
 
     /* Intro below hero */
-    .intro{ position:relative; padding: calc(var(--rhythm)/2) 0 8px; text-align:center; z-index:1 }
+    .intro{ text-align:center; padding:70px 0 24px }
     .intro .kicker{
-      font-family:"Playfair Display", serif; font-weight:600; letter-spacing:.25em; text-transform:uppercase;
-      color:rgba(43,43,43,.9);
+      font-family:"Playfair Display SC", serif; text-transform:uppercase;
+      letter-spacing:.25em; color:rgba(43,43,43,.9)
     }
-    .intro .date{ margin-top:6px; color:rgba(185,92,51,.98); font-weight:800; letter-spacing:.18em; text-transform:uppercase; font-size:1.05rem }
-    .cta{ display:inline-block; margin-top:16px; padding:12px 20px; border-radius:999px; border:1px solid var(--copper); color:#fff; background:var(--copper); text-decoration:none; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.92rem }
-    .cta:hover{ background:var(--copper-dark); border-color:var(--copper-dark) }
+    .intro .date{
+      color:var(--copper); font-weight:600; letter-spacing:.18em; text-transform:uppercase;
+      margin-top:6px; font-size:1.05rem
+    }
+    .cta{ display:inline-block; margin-top:18px; padding:12px 28px; border-radius:999px;
+      background:var(--copper); color:#fff; font-family:"Playfair Display SC", serif; text-transform:uppercase;
+      letter-spacing:.12em; font-weight:600 }
+    .cta:hover{ background:var(--copper-dark) }
 
-    /* EVENTS: icon left on desktop, stacked/center on mobile */
-    .events{ position:relative; display:grid; gap:48px; margin-top:36px }
-    @media (min-width:901px){
-      .events::before{
-        content:""; position:absolute; left:80px; top:0; bottom:0; width:1px;
-        background:linear-gradient(#e9d8c9,#d9b9a7,#e9d8c9);
-      }
+    /* Events (icon left on desktop) */
+    .events{ max-width:var(--max); margin:90px auto 40px; padding:0 22px; display:grid; gap:64px }
+    .event{ display:grid; grid-template-columns:220px 1fr; align-items:center; gap:28px }
+    .event img{ width:200px; height:auto; margin-left:auto; display:block; filter:contrast(1.05) saturate(1.05) }
+    .event h3{
+      font-family:"Playfair Display SC", serif; font-weight:700; color:var(--copper);
+      letter-spacing:.14em; text-transform:uppercase; margin:0 0 8px; font-size:1.25rem
     }
-    .event{
-      display:grid;
-      grid-template-columns: 220px 1fr;
-      align-items:center; gap:28px; padding:8px 6px;
-      transform:translateY(12px); opacity:0; transition:opacity .6s ease, transform .6s ease;
-    }
-    .event.revealed{ opacity:1; transform:translateY(0) }
-    .event .icon{ width:200px; height:auto; display:block; margin-left:auto; margin-right:0; filter:contrast(1.05) saturate(1.05); opacity:.98; transition:transform .22s ease }
-    .event:hover .icon{ transform: translateY(-3px) scale(1.02) }
-    .event h3{ margin:0 0 6px 0; text-align:left; font-family:"Playfair Display", serif; font-weight:900; color:var(--copper); letter-spacing:.16em; text-transform:uppercase; font-size:1.1rem }
-    .event .time{ font-weight:700; opacity:.95; margin-bottom:4px }
-    .event .addr{ color:#5a524d; margin-top:0 }
+    .event .time{ font-weight:600; font-size:1.05rem }
+    .event .addr{ color:#5a524d }
 
     @media (max-width:900px){
-      .event{ grid-template-columns: 1fr; text-align:center }
-      .event .icon{ width:130px; margin:0 auto 6px auto }
-      .events::before{ display:none }
-      .event h3{ text-align:center }
+      .event{ grid-template-columns:1fr; text-align:center }
+      .event img{ margin:0 auto; width:140px }
     }
 
-    /* FAQ */
-    .faq{
-      display:grid; grid-template-columns: 1fr 1.05fr; gap:26px; align-items:start;
-    }
-    .faq img{
-      width:100%; height:auto; border-radius:18px; border:1px solid var(--line);
-      box-shadow:0 10px 30px rgba(0,0,0,.08); object-fit:cover; object-position:center;
-    }
-    details{ border-top:1px solid var(--line); padding:14px 2px }
-    details:first-of-type{border-top:0}
-    summary{ list-style:none; cursor:pointer; outline:none; display:flex; justify-content:space-between; align-items:center; font-weight:700; letter-spacing:.05em }
-    summary::after{content:"+"; color:var(--copper); font-weight:900}
-    details[open] summary::after{content:"–"}
-    details p{margin:.6rem 0 .2rem}
-
-    /* Notes (Travel/Stay) */
-    h2{ font-family:"Playfair Display", serif; font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--copper); font-size:clamp(18px,3.2vw,22px); margin:2px 0 14px; text-align:center }
-    .note{ background:var(--paper-2); border:1px solid var(--line); border-radius:18px; padding:24px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
-    .note.revealed{ opacity:1; transform:translateY(0) }
-    .bullets{margin:.4rem 0 0 0}
-    .bullets li{margin:.25rem 0}
-    .stars{color:var(--copper); letter-spacing:.06em}
-
-    footer{ padding:60px 0 80px; text-align:center; color:#7a6f67 }
+    footer{ text-align:center; padding:70px 0 80px; color:#7a6f67; font-family:"Playfair Display SC", serif; letter-spacing:.2em; text-transform:uppercase; font-size:.9rem }
   </style>
 </head>
-
 <body>
-  <!-- Sticky brand shown after hero -->
-  <div class="sticky-brand" id="stickyBrand">
-    <div class="brand-script">Michael &amp; Mariella</div>
-  </div>
 
-  <!-- PASSWORD GATE (code: mm26) -->
-  <div class="gate" id="pwGate" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
-    <div class="gate-card">
-      <div class="smallcaps" style="color:var(--copper); font-weight:800;">Private Site</div>
-      <h1 id="pwTitle">Michael &amp; Mariella</h1>
-      <p>Please enter the code to view our wedding details.</p>
-      <div class="field">
-        <input id="pwInput" placeholder="Enter code" aria-label="Password code" autocomplete="off" />
-        <button id="pwBtn">Enter</button>
-      </div>
-      <div class="err" id="pwErr" role="status" aria-live="polite"></div>
+  <!-- HEADER / NAV -->
+  <header class="site-top">
+    <div class="topbar wrap">
+      <a class="brand" href="index.html">Michael &amp; Mariella</a>
+
+      <button class="burger" id="burger" aria-label="Toggle menu" aria-expanded="false">
+        <span></span>
+      </button>
+
+      <nav class="menu" id="menu">
+        <a class="active" href="rsvp.html">RSVP</a>
+        <a href="travel-hotels.html">Travel &amp; Hotels</a>
+        <a href="itinerary.html">Itinerary</a>
+        <a href="guest-information.html">Guest Information</a>
+        <a href="must-sees.html">Must Sees and Dos</a>
+        <a href="registry.html">Registry</a>
+      </nav>
     </div>
-  </div>
+  </header>
 
   <!-- HERO -->
   <header class="hero" id="hero">
-    <div class="names"><h1>MICHAEL &amp; MARIELLA</h1></div>
+    <div class="names"><h1>Michael &amp; Mariella</h1></div>
   </header>
 
   <!-- INTRO -->
-  <section class="intro wrap" aria-label="Intro">
+  <section class="intro wrap">
     <div class="kicker">Our Wedding</div>
     <div class="date">June 24, 2026</div>
     <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
   </section>
 
-  <!-- SCHEDULE -->
-  <section class="section wrap" id="schedule" aria-label="Schedule">
-    <div class="events">
-      <article class="event reveal">
-        <img loading="lazy" class="icon" src="images/WelcomeDinnerIcon.png" alt="Welcome dinner icon" />
-        <div>
-          <h3>Welcome Dinner</h3>
-          <p class="time">Tuesday, June 23rd, 2026 · 7:30 PM</p>
-          <p class="addr">
-            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Palazzo+Portinari+Salviati">Palazzo Portinari Salviati</a> — Florence, Italy
-          </p>
-        </div>
-      </article>
-
-      <article class="event reveal">
-        <img loading="lazy" class="icon" src="images/WeddingIcon.png" alt="Ceremony icon" />
-        <div>
-          <h3>The Ceremony</h3>
-          <p class="time">Wednesday, June 24th, 2026 · 4:00 PM</p>
-          <p class="addr">
-            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Basilica+di+Santa+Maria+Novella">Basilica di Santa Maria Novella</a><br/>
-            Piazza di Santa Maria Novella, 18 — 50123 Firenze FI, Italy
-          </p>
-        </div>
-      </article>
-
-      <article class="event reveal">
-        <img loading="lazy" class="icon" src="images/ReceptionIcon.png" alt="Reception icon" />
-        <div>
-          <h3>Reception</h3>
-          <p class="time">Wednesday, June 24th, 2026 · 6:30 PM</p>
-          <p class="addr">
-            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Villa+Cetinale">Villa Cetinale</a> — Str. di Cetinale, 9 — 53018 Sovicille SI, Italy
-          </p>
-        </div>
-      </article>
-    </div>
-  </section>
-
-  <!-- FAQ -->
-  <section class="section wrap" id="faq" aria-label="FAQ">
-    <div class="faq">
-      <img src="images/SecondaryCoupleImage.png" alt="Michael & Mariella" />
-      <div class="card" style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.05);">
-        <h2>Frequently-asked Qs</h2>
-
-        <details open>
-          <summary>Can I bring a guest or my kids?</summary>
-          <p>We’d love to keep this gathering intimate, so we’re only able to accommodate those listed on the invitation. Thanks for understanding!</p>
-        </details>
-
-        <details>
-          <summary>Is transportation available?</summary>
-          <p>Yes, we will have a shuttle from the wedding to the reception.</p>
-        </details>
-
-        <details>
-          <summary>Will there be parking available at the venues?</summary>
-          <p>Yes.</p>
-        </details>
-
-        <details>
-          <summary>What is the dress code?</summary>
-          <p>Black-tie optional.</p>
-        </details>
-
-        <details>
-          <summary>Can you accommodate dietary restrictions?</summary>
-          <p>Absolutely! Please indicate any allergies or special requests when you RSVP.</p>
-        </details>
-
-        <details>
-          <summary>Vegetarian or vegan options?</summary>
-          <p>Yes—our caterers will offer multiple options for all guests.</p>
-        </details>
+  <!-- SCHEDULE (kept short here; expand as you wish) -->
+  <section class="events">
+    <article class="event">
+      <img src="images/WelcomeDinnerIcon.png" alt="Welcome Dinner">
+      <div>
+        <h3>Welcome Dinner</h3>
+        <p class="time">Tuesday, June 23rd, 2026 · 7:30 PM</p>
+        <p class="addr"><a href="#">Palazzo Portinari Salviati</a> — Florence, Italy</p>
       </div>
-    </div>
+    </article>
+
+    <article class="event">
+      <img src="images/WeddingIcon.png" alt="Ceremony">
+      <div>
+        <h3>The Ceremony</h3>
+        <p class="time">Wednesday, June 24th, 2026 · 4:00 PM</p>
+        <p class="addr"><a href="#">Basilica di Santa Maria Novella</a> — Florence, Italy</p>
+      </div>
+    </article>
+
+    <article class="event">
+      <img src="images/ReceptionIcon.png" alt="Reception">
+      <div>
+        <h3>Reception</h3>
+        <p class="time">Wednesday, June 24th, 2026 · 6:30 PM</p>
+        <p class="addr"><a href="#">Villa Cetinale</a> — Sovicille, Italy</p>
+      </div>
+    </article>
   </section>
 
-  <!-- TRAVEL -->
-  <section class="section wrap" id="travel" aria-label="Travel">
-    <div class="note reveal">
-      <h2>Traveling to the Wedding</h2>
-      <p class="center">We recommend booking flights directly to Florence (FLR) whenever possible—it’s the closest airport to the ceremony, rehearsal dinner, and our recommended hotels.</p>
-      <div class="hr"></div>
-      <p><strong>If you’re flying internationally</strong>, you have two options:</p>
-      <ul class="bullets">
-        <li><strong>Fly directly into Florence (FLR)</strong> → Best option if available.</li>
-        <li><strong>Fly into a major airport first</strong> (Rome or Milan), then connect to Florence:</li>
-        <ul class="bullets">
-          <li>From Rome (FCO) → High-speed train to Florence (~1 hr 30 mins).</li>
-          <li>From Milan (MXP) → Train to Florence (~2 hrs).</li>
-        </ul>
-      </ul>
-    </div>
-  </section>
-
-  <!-- STAY -->
-  <section class="section wrap" id="stay" aria-label="Stay">
-    <div class="note reveal">
-      <h2>Where to Stay for the Wedding</h2>
-      <p class="center">We suggest staying in Florence for the ceremony and rehearsal dinner. We don’t have group bookings, but we highly recommend reserving early since June is peak season.</p>
-      <div class="hr"></div>
-      <p><strong>Luxury Hotels</strong></p>
-      <ul class="bullets">
-        <li>Portrait Firenze <span class="stars">★★★★★</span> — Boutique riverside luxury.</li>
-        <li>Hotel Savoy <span class="stars">★★★★★</span> — Central, classic, and elegant.</li>
-        <li>Palazzo Portinari Salviati <span class="stars">★★★★★</span> — Historic and opulent (also rehearsal dinner venue).</li>
-      </ul>
-    </div>
-  </section>
-
-  <footer class="wrap">
-    <div class="hr"></div>
-    <div class="smallcaps center">Michael &amp; Mariella · June 24, 2026</div>
+  <footer>
+    Michael &amp; Mariella · June 24, 2026
   </footer>
 
   <script>
-    /* Password gate: mm26 */
+    // Mobile menu toggle
     (function(){
-      const OK_KEY="mm-site-ok-v1", PASS="mm26";
-      const gate=document.getElementById('pwGate'), input=document.getElementById('pwInput'), btn=document.getElementById('pwBtn'), err=document.getElementById('pwErr');
-      function openSite(){ gate.setAttribute('hidden',''); document.body.style.overflow='auto'; }
-      function deny(){ err.textContent = "That code didn’t work. Please try again."; }
-      if(sessionStorage.getItem(OK_KEY)==="1"){ openSite(); } else { document.body.style.overflow='hidden'; }
-      function check(){ const v=(input.value||"").trim().toLowerCase(); if(v===PASS){ sessionStorage.setItem(OK_KEY,"1"); openSite(); } else { deny(); } }
-      btn.addEventListener('click', check);
-      input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') check(); });
-    })();
-
-    /* Sticky header after hero */
-    (function(){
-      const sticky=document.getElementById('stickyBrand');
-      const hero=document.getElementById('hero');
-      const io=new IntersectionObserver(([entry])=>{
-        sticky.classList.toggle('show', !entry.isIntersecting);
-      },{threshold:0.01});
-      io.observe(hero);
-    })();
-
-    /* Reveal-on-scroll */
-    (function(){
-      const els=document.querySelectorAll('.reveal, .event');
-      const io=new IntersectionObserver((es)=>{
-        es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); } });
-      },{threshold:.14});
-      els.forEach(el=>io.observe(el));
-    })();
-
-    /* Gentle parallax for hero (respects reduced motion) */
-    (function(){
-      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-      const set=()=>document.documentElement.style.setProperty('--scrollY',(window.scrollY*0.18)+'px');
-      set(); window.addEventListener('scroll',set,{passive:true});
+      const burger = document.getElementById('burger');
+      const menu = document.getElementById('menu');
+      burger.addEventListener('click', () => {
+        const open = menu.classList.toggle('open');
+        burger.setAttribute('aria-expanded', open ? 'true' : 'false');
+      });
     })();
   </script>
 </body>
