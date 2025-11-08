@@ -33,7 +33,7 @@
       -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Sticky brand (minimal) */
+    /* Sticky brand */
     .sticky-brand{
       position:fixed; inset:0 0 auto 0; height:64px; z-index:60;
       display:flex; align-items:center; justify-content:center;
@@ -62,6 +62,7 @@
     .center{text-align:center}
     .hr{height:1px; background:var(--line); margin:24px 0}
     .smallcaps{letter-spacing:.2em; text-transform:uppercase}
+    .section{ padding:56px 0 }
 
     /* HERO */
     .hero{
@@ -81,12 +82,11 @@
       background: linear-gradient(180deg, #c57044 0%, #b95c33 40%, #9e4c29 100%);
       -webkit-background-clip:text; background-clip:text; color:transparent;
       letter-spacing:.08em; text-transform:uppercase; font-size:clamp(42px, 9.2vw, 160px);
-      /* Less transparent: remove opacity and add gentle shadow for clarity */
       text-shadow: 0 2px 12px rgba(0,0,0,.28), 0 1px 0 rgba(255,255,255,.08);
     }
 
     /* Intro below hero */
-    .intro{ position:relative; margin-top:0; padding: calc(var(--rhythm)/2) 0 8px; text-align:center; z-index:1 }
+    .intro{ position:relative; padding: calc(var(--rhythm)/2) 0 8px; text-align:center; z-index:1 }
     .intro .kicker{
       font-family:"Playfair Display", serif; font-weight:600; letter-spacing:.25em; text-transform:uppercase;
       color:rgba(43,43,43,.9);
@@ -97,7 +97,6 @@
 
     /* EVENTS: icon left on desktop, stacked/center on mobile */
     .events{ position:relative; display:grid; gap:48px; margin-top:36px }
-    /* subtle vertical guide only on desktop */
     @media (min-width:901px){
       .events::before{
         content:""; position:absolute; left:80px; top:0; bottom:0; width:1px;
@@ -106,7 +105,7 @@
     }
     .event{
       display:grid;
-      grid-template-columns: 220px 1fr;  /* icon left, text right */
+      grid-template-columns: 220px 1fr;
       align-items:center; gap:28px; padding:8px 6px;
       transform:translateY(12px); opacity:0; transition:opacity .6s ease, transform .6s ease;
     }
@@ -117,7 +116,6 @@
     .event .time{ font-weight:700; opacity:.95; margin-bottom:4px }
     .event .addr{ color:#5a524d; margin-top:0 }
 
-    /* Mobile: stack & center */
     @media (max-width:900px){
       .event{ grid-template-columns: 1fr; text-align:center }
       .event .icon{ width:130px; margin:0 auto 6px auto }
@@ -125,10 +123,28 @@
       .event h3{ text-align:center }
     }
 
-    /* Other sections (if you add later) */
+    /* FAQ */
+    .faq{
+      display:grid; grid-template-columns: 1fr 1.05fr; gap:26px; align-items:start;
+    }
+    .faq img{
+      width:100%; height:auto; border-radius:18px; border:1px solid var(--line);
+      box-shadow:0 10px 30px rgba(0,0,0,.08); object-fit:cover; object-position:center;
+    }
+    details{ border-top:1px solid var(--line); padding:14px 2px }
+    details:first-of-type{border-top:0}
+    summary{ list-style:none; cursor:pointer; outline:none; display:flex; justify-content:space-between; align-items:center; font-weight:700; letter-spacing:.05em }
+    summary::after{content:"+"; color:var(--copper); font-weight:900}
+    details[open] summary::after{content:"–"}
+    details p{margin:.6rem 0 .2rem}
+
+    /* Notes (Travel/Stay) */
     h2{ font-family:"Playfair Display", serif; font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--copper); font-size:clamp(18px,3.2vw,22px); margin:2px 0 14px; text-align:center }
     .note{ background:var(--paper-2); border:1px solid var(--line); border-radius:18px; padding:24px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
     .note.revealed{ opacity:1; transform:translateY(0) }
+    .bullets{margin:.4rem 0 0 0}
+    .bullets li{margin:.25rem 0}
+    .stars{color:var(--copper); letter-spacing:.06em}
 
     footer{ padding:60px 0 80px; text-align:center; color:#7a6f67 }
   </style>
@@ -159,7 +175,7 @@
     <div class="names"><h1>MICHAEL &amp; MARIELLA</h1></div>
   </header>
 
-  <!-- INTRO (below hero) -->
+  <!-- INTRO -->
   <section class="intro wrap" aria-label="Intro">
     <div class="kicker">Our Wedding</div>
     <div class="date">June 24, 2026</div>
@@ -205,6 +221,79 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="section wrap" id="faq" aria-label="FAQ">
+    <div class="faq">
+      <img src="images/SecondaryCoupleImage.png" alt="Michael & Mariella" />
+      <div class="card" style="background:#fff;border:1px solid var(--line);border-radius:18px;padding:22px;box-shadow:0 10px 30px rgba(0,0,0,.05);">
+        <h2>Frequently-asked Qs</h2>
+
+        <details open>
+          <summary>Can I bring a guest or my kids?</summary>
+          <p>We’d love to keep this gathering intimate, so we’re only able to accommodate those listed on the invitation. Thanks for understanding!</p>
+        </details>
+
+        <details>
+          <summary>Is transportation available?</summary>
+          <p>Yes, we will have a shuttle from the wedding to the reception.</p>
+        </details>
+
+        <details>
+          <summary>Will there be parking available at the venues?</summary>
+          <p>Yes.</p>
+        </details>
+
+        <details>
+          <summary>What is the dress code?</summary>
+          <p>Black-tie optional.</p>
+        </details>
+
+        <details>
+          <summary>Can you accommodate dietary restrictions?</summary>
+          <p>Absolutely! Please indicate any allergies or special requests when you RSVP.</p>
+        </details>
+
+        <details>
+          <summary>Vegetarian or vegan options?</summary>
+          <p>Yes—our caterers will offer multiple options for all guests.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- TRAVEL -->
+  <section class="section wrap" id="travel" aria-label="Travel">
+    <div class="note reveal">
+      <h2>Traveling to the Wedding</h2>
+      <p class="center">We recommend booking flights directly to Florence (FLR) whenever possible—it’s the closest airport to the ceremony, rehearsal dinner, and our recommended hotels.</p>
+      <div class="hr"></div>
+      <p><strong>If you’re flying internationally</strong>, you have two options:</p>
+      <ul class="bullets">
+        <li><strong>Fly directly into Florence (FLR)</strong> → Best option if available.</li>
+        <li><strong>Fly into a major airport first</strong> (Rome or Milan), then connect to Florence:</li>
+        <ul class="bullets">
+          <li>From Rome (FCO) → High-speed train to Florence (~1 hr 30 mins).</li>
+          <li>From Milan (MXP) → Train to Florence (~2 hrs).</li>
+        </ul>
+      </ul>
+    </div>
+  </section>
+
+  <!-- STAY -->
+  <section class="section wrap" id="stay" aria-label="Stay">
+    <div class="note reveal">
+      <h2>Where to Stay for the Wedding</h2>
+      <p class="center">We suggest staying in Florence for the ceremony and rehearsal dinner. We don’t have group bookings, but we highly recommend reserving early since June is peak season.</p>
+      <div class="hr"></div>
+      <p><strong>Luxury Hotels</strong></p>
+      <ul class="bullets">
+        <li>Portrait Firenze <span class="stars">★★★★★</span> — Boutique riverside luxury.</li>
+        <li>Hotel Savoy <span class="stars">★★★★★</span> — Central, classic, and elegant.</li>
+        <li>Palazzo Portinari Salviati <span class="stars">★★★★★</span> — Historic and opulent (also rehearsal dinner venue).</li>
+      </ul>
+    </div>
+  </section>
+
   <footer class="wrap">
     <div class="hr"></div>
     <div class="smallcaps center">Michael &amp; Mariella · June 24, 2026</div>
@@ -223,7 +312,7 @@
       input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') check(); });
     })();
 
-    /* Sticky header toggles after hero */
+    /* Sticky header after hero */
     (function(){
       const sticky=document.getElementById('stickyBrand');
       const hero=document.getElementById('hero');
@@ -235,7 +324,7 @@
 
     /* Reveal-on-scroll */
     (function(){
-      const els=document.querySelectorAll('.reveal, .note');
+      const els=document.querySelectorAll('.reveal, .event');
       const io=new IntersectionObserver((es)=>{
         es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); } });
       },{threshold:.14});
