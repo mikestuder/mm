@@ -6,6 +6,15 @@
   <title>Michael & Mariella — June 24, 2026</title>
   <meta name="description" content="Michael & Mariella — Wedding weekend details, RSVP, travel and hotel info for Florence, Italy." />
 
+  <!-- Social -->
+  <meta property="og:title" content="Michael & Mariella · June 24, 2026">
+  <meta property="og:description" content="Florence, Italy · Ceremony, dinner, travel & hotel details">
+  <meta property="og:image" content="images/WeddingHeroImage.png">
+  <meta property="og:type" content="website">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="theme-color" content="#B95C33">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;800;900&family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=Great+Vibes&display=swap" rel="stylesheet">
@@ -13,130 +22,232 @@
   <style>
     :root{
       --copper:#B95C33; --copper-dark:#9e4c29;
-      --ink:#2a2a2a; --paper:#fffaf5; --line:#e9d8c9;
-      --max:1060px;
+      --ink:#2a2a2a; --ink-soft:#3b312c;
+      --paper:#fffaf5; --paper-2:#fff7ef; --line:#e9d8c9;
+      --max: 1060px; --scrollY: 0px; --rhythm: 72px;
     }
+    html,body{height:100%}
     body{
       margin:0; color:var(--ink); background:var(--paper);
       font-family:"Libre Baskerville", Georgia, serif; line-height:1.6;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
     }
 
-    /* Password Gate */
-    .gate{position:fixed;inset:0;display:flex;align-items:center;justify-content:center;background:rgba(255,250,245,.9);z-index:9999}
-    .gate[hidden]{display:none}
-    .gate-card{background:#fff;padding:24px;border-radius:12px;border:1px solid var(--line);text-align:center;max-width:360px;box-shadow:0 5px 20px rgba(0,0,0,.08)}
-    .gate h1{font-family:"Playfair Display",serif;color:var(--copper);letter-spacing:.1em;text-transform:uppercase;font-size:1rem}
-    .gate input{padding:10px;border:1px solid var(--line);border-radius:6px;text-align:center;text-transform:uppercase;font-weight:700;margin-right:8px}
-    .gate button{background:var(--copper);color:#fff;border:none;border-radius:6px;padding:10px 14px;font-weight:700;cursor:pointer}
-    .gate button:hover{background:var(--copper-dark)}
+    /* Sticky brand (minimal) */
+    .sticky-brand{
+      position:fixed; inset:0 0 auto 0; height:64px; z-index:60;
+      display:flex; align-items:center; justify-content:center;
+      transform:translateY(-100%); transition:transform .35s ease, backdrop-filter .35s ease, background-color .35s ease;
+      background:rgba(255,250,245,.5); backdrop-filter:saturate(120%) blur(6px);
+      border-bottom:1px solid rgba(233,216,201,.6);
+    }
+    .sticky-brand.show{ transform:translateY(0); }
+    .brand-script{ font-family:"Great Vibes", cursive; font-size:28px; color:var(--copper) }
 
-    /* Hero */
+    /* Password gate */
+    .gate{ position:fixed; inset:0; z-index:9999; display:flex; align-items:center; justify-content:center;
+      background: radial-gradient(80% 60% at 50% 20%, rgba(185,92,51,.12), rgba(255,250,245,.85) 60%), var(--paper);
+    }
+    .gate[hidden]{display:none}
+    .gate-card{ width:min(560px,92vw); background:#fff; border:1px solid var(--line); padding:28px 26px; border-radius:18px; box-shadow:0 10px 30px rgba(0,0,0,.08); text-align:center }
+    .gate h1{ margin:.2rem 0 1rem; font-family:"Playfair Display", serif; font-weight:900; letter-spacing:.14em; text-transform:uppercase; color:var(--copper); font-size:1.05rem }
+    .gate .field{ display:flex; gap:12px; justify-content:center; margin-top:.4rem }
+    .gate input{ font:700 1rem/1 "Libre Baskerville", serif; padding:12px 14px; border:1px solid var(--line); border-radius:10px; width:180px; text-align:center; letter-spacing:.16em; text-transform:uppercase; background:#fffdf9 }
+    .gate button{ padding:12px 16px; border-radius:10px; border:1px solid var(--copper); background:var(--copper); color:#fff; font-weight:700; cursor:pointer; letter-spacing:.08em; text-transform:uppercase }
+    .gate button:hover{ background:var(--copper-dark) }
+    .gate .err{ color:#a12626; font-size:.9rem; min-height:1.2em }
+
+    /* Utilities */
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 22px}
+    .center{text-align:center}
+    .hr{height:1px; background:var(--line); margin:24px 0}
+    .smallcaps{letter-spacing:.2em; text-transform:uppercase}
+
+    /* HERO */
     .hero{
-      position:relative;min-height:92vh;display:grid;place-items:center;
-      background:#000;overflow:hidden;
+      position:relative; min-height:94vh; display:grid; place-items:center;
+      overflow:hidden; isolation:isolate; background:#000;
     }
     .hero::before{
-      content:"";position:absolute;inset:0;
-      background:url('images/WeddingHeroImage.png') center/cover no-repeat;
-      filter:grayscale(100%) brightness(.8);opacity:.9;
+      content:""; position:absolute; inset:0;
+      background-image:url('images/WeddingHeroImage.png'); background-size:cover;
+      background-position:center calc(50% + var(--scrollY));
+      filter:grayscale(100%) contrast(1.05) brightness(.8); opacity:.9; z-index:-2;
     }
+    .hero::after{ content:""; position:absolute; inset:0; background:linear-gradient(to top, rgba(0,0,0,.45), rgba(0,0,0,.0) 60%); z-index:-1 }
+    .names{ position:absolute; inset:0; display:grid; place-items:center; pointer-events:none }
     .names h1{
-      font-family:"Playfair Display",serif;font-weight:900;
-      font-size:clamp(44px,9vw,160px);
-      text-transform:uppercase;letter-spacing:.08em;
-      background:linear-gradient(180deg,#c57044 0%,#b95c33 40%,#9e4c29 100%);
-      -webkit-background-clip:text;color:transparent;text-align:center;margin:0;
+      margin:0; line-height:.82; text-align:center; font-family:"Playfair Display", serif; font-weight:900;
+      background: linear-gradient(180deg, #c57044 0%, #b95c33 40%, #9e4c29 100%);
+      -webkit-background-clip:text; background-clip:text; color:transparent;
+      letter-spacing:.08em; text-transform:uppercase; font-size:clamp(42px, 9.2vw, 160px);
+      /* Less transparent: remove opacity and add gentle shadow for clarity */
+      text-shadow: 0 2px 12px rgba(0,0,0,.28), 0 1px 0 rgba(255,255,255,.08);
     }
 
-    /* Intro */
-    .intro{text-align:center;padding:60px 0 20px}
-    .intro .kicker{font-family:"Playfair Display";letter-spacing:.25em;text-transform:uppercase;font-weight:600;color:rgba(43,43,43,.86)}
-    .intro .date{color:var(--copper);font-weight:800;letter-spacing:.18em;text-transform:uppercase;margin-top:4px;font-size:1.05rem}
-    .cta{display:inline-block;margin-top:16px;padding:12px 24px;background:var(--copper);color:#fff;border-radius:999px;text-decoration:none;font-weight:700;letter-spacing:.12em;text-transform:uppercase}
-    .cta:hover{background:var(--copper-dark)}
+    /* Intro below hero */
+    .intro{ position:relative; margin-top:0; padding: calc(var(--rhythm)/2) 0 8px; text-align:center; z-index:1 }
+    .intro .kicker{
+      font-family:"Playfair Display", serif; font-weight:600; letter-spacing:.25em; text-transform:uppercase;
+      color:rgba(43,43,43,.9);
+    }
+    .intro .date{ margin-top:6px; color:rgba(185,92,51,.98); font-weight:800; letter-spacing:.18em; text-transform:uppercase; font-size:1.05rem }
+    .cta{ display:inline-block; margin-top:16px; padding:12px 20px; border-radius:999px; border:1px solid var(--copper); color:#fff; background:var(--copper); text-decoration:none; font-weight:700; letter-spacing:.12em; text-transform:uppercase; font-size:.92rem }
+    .cta:hover{ background:var(--copper-dark); border-color:var(--copper-dark) }
 
-    /* Events */
-    .events{max-width:var(--max);margin:100px auto;padding:0 24px;display:grid;gap:100px}
-    .event{text-align:center;opacity:0;transform:translateY(20px);transition:opacity .8s ease,transform .8s ease}
-    .event.revealed{opacity:1;transform:translateY(0)}
-    .event img{width:200px;height:auto;margin-bottom:20px;filter:saturate(1.2) contrast(1.05);opacity:.95}
-    .event h3{font-family:"Playfair Display",serif;font-weight:900;color:var(--copper);text-transform:uppercase;letter-spacing:.14em;margin:0 0 8px}
-    .event p{margin:3px 0}
-    .event .time{font-weight:700;color:var(--ink)}
-    .event .addr{color:#5a524d}
-    @media(max-width:900px){
-      .event img{width:130px;margin-bottom:16px}
+    /* EVENTS: icon left on desktop, stacked/center on mobile */
+    .events{ position:relative; display:grid; gap:48px; margin-top:36px }
+    /* subtle vertical guide only on desktop */
+    @media (min-width:901px){
+      .events::before{
+        content:""; position:absolute; left:80px; top:0; bottom:0; width:1px;
+        background:linear-gradient(#e9d8c9,#d9b9a7,#e9d8c9);
+      }
+    }
+    .event{
+      display:grid;
+      grid-template-columns: 220px 1fr;  /* icon left, text right */
+      align-items:center; gap:28px; padding:8px 6px;
+      transform:translateY(12px); opacity:0; transition:opacity .6s ease, transform .6s ease;
+    }
+    .event.revealed{ opacity:1; transform:translateY(0) }
+    .event .icon{ width:200px; height:auto; display:block; margin-left:auto; margin-right:0; filter:contrast(1.05) saturate(1.05); opacity:.98; transition:transform .22s ease }
+    .event:hover .icon{ transform: translateY(-3px) scale(1.02) }
+    .event h3{ margin:0 0 6px 0; text-align:left; font-family:"Playfair Display", serif; font-weight:900; color:var(--copper); letter-spacing:.16em; text-transform:uppercase; font-size:1.1rem }
+    .event .time{ font-weight:700; opacity:.95; margin-bottom:4px }
+    .event .addr{ color:#5a524d; margin-top:0 }
+
+    /* Mobile: stack & center */
+    @media (max-width:900px){
+      .event{ grid-template-columns: 1fr; text-align:center }
+      .event .icon{ width:130px; margin:0 auto 6px auto }
+      .events::before{ display:none }
+      .event h3{ text-align:center }
     }
 
-    footer{text-align:center;padding:60px 0 80px;color:#7a6f67}
+    /* Other sections (if you add later) */
+    h2{ font-family:"Playfair Display", serif; font-weight:900; letter-spacing:.18em; text-transform:uppercase; color:var(--copper); font-size:clamp(18px,3.2vw,22px); margin:2px 0 14px; text-align:center }
+    .note{ background:var(--paper-2); border:1px solid var(--line); border-radius:18px; padding:24px; transform:translateY(8px); opacity:0; transition:opacity .6s ease, transform .6s ease }
+    .note.revealed{ opacity:1; transform:translateY(0) }
+
+    footer{ padding:60px 0 80px; text-align:center; color:#7a6f67 }
   </style>
 </head>
 
 <body>
-  <div class="gate" id="pwGate">
+  <!-- Sticky brand shown after hero -->
+  <div class="sticky-brand" id="stickyBrand">
+    <div class="brand-script">Michael &amp; Mariella</div>
+  </div>
+
+  <!-- PASSWORD GATE (code: mm26) -->
+  <div class="gate" id="pwGate" role="dialog" aria-modal="true" aria-labelledby="pwTitle">
     <div class="gate-card">
-      <h1>Michael &amp; Mariella</h1>
-      <p>Please enter the code:</p>
-      <input id="pwInput" placeholder="Code"><button id="pwBtn">Enter</button>
-      <div id="pwErr" style="color:#a12626;margin-top:8px;min-height:1em"></div>
+      <div class="smallcaps" style="color:var(--copper); font-weight:800;">Private Site</div>
+      <h1 id="pwTitle">Michael &amp; Mariella</h1>
+      <p>Please enter the code to view our wedding details.</p>
+      <div class="field">
+        <input id="pwInput" placeholder="Enter code" aria-label="Password code" autocomplete="off" />
+        <button id="pwBtn">Enter</button>
+      </div>
+      <div class="err" id="pwErr" role="status" aria-live="polite"></div>
     </div>
   </div>
 
-  <header class="hero">
-    <div class="names"><h1>Michael &amp; Mariella</h1></div>
+  <!-- HERO -->
+  <header class="hero" id="hero">
+    <div class="names"><h1>MICHAEL &amp; MARIELLA</h1></div>
   </header>
 
-  <section class="intro">
+  <!-- INTRO (below hero) -->
+  <section class="intro wrap" aria-label="Intro">
     <div class="kicker">Our Wedding</div>
     <div class="date">June 24, 2026</div>
-    <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank">RSVP</a>
+    <a class="cta" href="https://withjoy.com/michael-and-mariella" target="_blank" rel="noopener">RSVP</a>
   </section>
 
-  <section class="events">
-    <article class="event">
-      <img src="images/WelcomeDinnerIcon.png" alt="Welcome Dinner">
-      <h3>Welcome Dinner</h3>
-      <p class="time">Tuesday, June 23rd, 2026 · 7:30 PM</p>
-      <p class="addr">Palazzo Portinari Salviati — Florence, Italy</p>
-    </article>
+  <!-- SCHEDULE -->
+  <section class="section wrap" id="schedule" aria-label="Schedule">
+    <div class="events">
+      <article class="event reveal">
+        <img loading="lazy" class="icon" src="images/WelcomeDinnerIcon.png" alt="Welcome dinner icon" />
+        <div>
+          <h3>Welcome Dinner</h3>
+          <p class="time">Tuesday, June 23rd, 2026 · 7:30 PM</p>
+          <p class="addr">
+            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Palazzo+Portinari+Salviati">Palazzo Portinari Salviati</a> — Florence, Italy
+          </p>
+        </div>
+      </article>
 
-    <article class="event">
-      <img src="images/WeddingIcon.png" alt="Ceremony">
-      <h3>The Ceremony</h3>
-      <p class="time">Wednesday, June 24th, 2026 · 4:00 PM</p>
-      <p class="addr">Basilica di Santa Maria Novella — Florence, Italy</p>
-    </article>
+      <article class="event reveal">
+        <img loading="lazy" class="icon" src="images/WeddingIcon.png" alt="Ceremony icon" />
+        <div>
+          <h3>The Ceremony</h3>
+          <p class="time">Wednesday, June 24th, 2026 · 4:00 PM</p>
+          <p class="addr">
+            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Basilica+di+Santa+Maria+Novella">Basilica di Santa Maria Novella</a><br/>
+            Piazza di Santa Maria Novella, 18 — 50123 Firenze FI, Italy
+          </p>
+        </div>
+      </article>
 
-    <article class="event">
-      <img src="images/ReceptionIcon.png" alt="Reception">
-      <h3>Reception</h3>
-      <p class="time">Wednesday, June 24th, 2026 · 6:30 PM</p>
-      <p class="addr">Villa Cetinale — Sovicille SI, Italy</p>
-    </article>
+      <article class="event reveal">
+        <img loading="lazy" class="icon" src="images/ReceptionIcon.png" alt="Reception icon" />
+        <div>
+          <h3>Reception</h3>
+          <p class="time">Wednesday, June 24th, 2026 · 6:30 PM</p>
+          <p class="addr">
+            <a target="_blank" rel="noopener" href="https://maps.google.com/?q=Villa+Cetinale">Villa Cetinale</a> — Str. di Cetinale, 9 — 53018 Sovicille SI, Italy
+          </p>
+        </div>
+      </article>
+    </div>
   </section>
 
-  <footer>
-    <div class="smallcaps">Michael &amp; Mariella · June 24, 2026</div>
+  <footer class="wrap">
+    <div class="hr"></div>
+    <div class="smallcaps center">Michael &amp; Mariella · June 24, 2026</div>
   </footer>
 
   <script>
-    // Password
+    /* Password gate: mm26 */
     (function(){
-      const PASS="mm26", key="mm-ok";
-      const gate=document.getElementById('pwGate'),input=document.getElementById('pwInput'),btn=document.getElementById('pwBtn'),err=document.getElementById('pwErr');
-      function unlock(){gate.hidden=true;sessionStorage.setItem(key,"1")}
-      function check(){if((input.value||"").toLowerCase().trim()===PASS)unlock();else err.textContent="Incorrect code."}
-      btn.onclick=check;input.onkeydown=e=>{if(e.key==="Enter")check()};
-      if(sessionStorage.getItem(key)==="1")unlock();
+      const OK_KEY="mm-site-ok-v1", PASS="mm26";
+      const gate=document.getElementById('pwGate'), input=document.getElementById('pwInput'), btn=document.getElementById('pwBtn'), err=document.getElementById('pwErr');
+      function openSite(){ gate.setAttribute('hidden',''); document.body.style.overflow='auto'; }
+      function deny(){ err.textContent = "That code didn’t work. Please try again."; }
+      if(sessionStorage.getItem(OK_KEY)==="1"){ openSite(); } else { document.body.style.overflow='hidden'; }
+      function check(){ const v=(input.value||"").trim().toLowerCase(); if(v===PASS){ sessionStorage.setItem(OK_KEY,"1"); openSite(); } else { deny(); } }
+      btn.addEventListener('click', check);
+      input.addEventListener('keydown', (e)=>{ if(e.key==='Enter') check(); });
     })();
 
-    // Reveal animation
-    const observer=new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){e.target.classList.add("revealed");observer.unobserve(e.target);}
-      });
-    },{threshold:.2});
-    document.querySelectorAll(".event").forEach(e=>observer.observe(e));
+    /* Sticky header toggles after hero */
+    (function(){
+      const sticky=document.getElementById('stickyBrand');
+      const hero=document.getElementById('hero');
+      const io=new IntersectionObserver(([entry])=>{
+        sticky.classList.toggle('show', !entry.isIntersecting);
+      },{threshold:0.01});
+      io.observe(hero);
+    })();
+
+    /* Reveal-on-scroll */
+    (function(){
+      const els=document.querySelectorAll('.reveal, .note');
+      const io=new IntersectionObserver((es)=>{
+        es.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('revealed'); io.unobserve(e.target); } });
+      },{threshold:.14});
+      els.forEach(el=>io.observe(el));
+    })();
+
+    /* Gentle parallax for hero (respects reduced motion) */
+    (function(){
+      if(window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      const set=()=>document.documentElement.style.setProperty('--scrollY',(window.scrollY*0.18)+'px');
+      set(); window.addEventListener('scroll',set,{passive:true});
+    })();
   </script>
 </body>
 </html>
